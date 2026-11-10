@@ -1,0 +1,9 @@
+ATELIER BRODERIE — installation sur iPad (hors App Store)
+
+1. Mets ces fichiers sur un hébergement HTTPS gratuit, par exemple GitHub Pages :
+   - crée un dépôt (ex. « atelier-broderie »), dépose tous les fichiers de ce dossier à la racine ;
+   - Settings > Pages > Source : « Deploy from a branch », branche main, dossier / (root).
+   L'adresse sera du type https://<ton-compte>.github.io/atelier-broderie/
+2. Sur l'iPad, ouvre cette adresse dans Safari, bouton Partager > « Sur l'écran d'accueil ».
+3. L'app s'ouvre alors en plein écran et fonctionne ensuite sans connexion.
+   Les projets sont enregistrés dans l'iPad (pense à exporter une sauvegarde .json de temps en temps).
