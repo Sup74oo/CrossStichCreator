@@ -3,73 +3,91 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Broderie">
-<meta name="theme-color" content="#f5efe4">
+<meta name="theme-color" content="#F5F5F7">
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Atelier Broderie</title>
-<style>:root{--bg:#f5efe4;--card:#fffdf8;--ink:#2a2420;--mute:#7b7067;--line:#e3d8c8;--acc:#b0283f;--acc2:#2f6b5a;--sel:#fbe3e7;--rad:14px;
+<style>/* Thème « style Apple » — même palette que apple_theme.py */
+:root{
+  --bg:#F5F5F7;--side:#ECECEE;--card:#FFFFFF;--sep:#E3E3E6;--line:#D2D2D7;
+  --ink:#1D1D1F;--mute:#86868B;--acc:#0A84FF;--acc-h:#0071E3;--acc-l:#D6E8FF;
+  --red:#FF3B30;--red-h:#E0352B;--green:#34C759;--fill:#E8E8ED;--fill-h:#DCDCE1;
+  --sel:var(--acc-l);--rad:12px;
   --safe-t:env(safe-area-inset-top,0px);--safe-b:env(safe-area-inset-bottom,0px);--safe-l:env(safe-area-inset-left,0px);--safe-r:env(safe-area-inset-right,0px)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:16px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;overscroll-behavior:none}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:15px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI Variable Text","Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;overscroll-behavior:none}
 input,textarea{-webkit-user-select:text;user-select:text}
 button,select,input{font:inherit;color:inherit}
 button{touch-action:manipulation;cursor:pointer}
 #app{height:100%;display:flex;flex-direction:column;padding:var(--safe-t) var(--safe-r) 0 var(--safe-l)}
-.btn{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:9px 14px;min-height:44px;display:inline-flex;align-items:center;gap:8px;justify-content:center;font-weight:500}
-.btn:active{transform:scale(.97)}
-.btn.pri{background:var(--acc);border-color:var(--acc);color:#fff}
-.btn.sec{background:var(--acc2);border-color:var(--acc2);color:#fff}
-.btn.ghost{background:transparent;border-color:transparent}
-.btn.sm{min-height:36px;padding:6px 10px;font-size:14px}
-.btn[disabled]{opacity:.45;pointer-events:none}
-.btn.danger{color:var(--acc)}
+
+/* Boutons pilule : gris texte bleu (secondaire), bleu plein (principal), rouge (danger) */
+.btn{border:none;background:var(--fill);color:var(--acc);border-radius:999px;padding:8px 16px;min-height:40px;display:inline-flex;align-items:center;gap:7px;justify-content:center;font-weight:500;transition:background .15s,transform .1s}
+.btn:hover{background:var(--fill-h)}
+.btn:active{transform:scale(.97);background:var(--fill-h)}
+.btn.pri{background:var(--acc);color:#fff}
+.btn.pri:hover,.btn.pri:active{background:var(--acc-h)}
+.btn.sec{background:var(--acc);color:#fff}
+.btn.sec:hover,.btn.sec:active{background:var(--acc-h)}
+.btn.ghost{background:transparent;color:var(--acc)}
+.btn.ghost:hover{background:rgba(0,0,0,.04)}
+.btn.sm{min-height:34px;padding:5px 13px;font-size:14px}
+.btn[disabled]{opacity:.35;pointer-events:none}
+.btn.danger{color:var(--red)}
+.btn.pri.danger{background:var(--red);color:#fff}
+
 /* Accueil */
-.home{flex:1;overflow:auto;padding:28px clamp(16px,4vw,48px) calc(40px + var(--safe-b))}
-.home h1{font-family:"Iowan Old Style","Palatino",Georgia,serif;font-size:clamp(30px,4vw,42px);margin:0 0 4px;letter-spacing:-.5px}
-.home .sub{color:var(--mute);margin:0 0 26px}
-.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-bottom:34px}
-.mode{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
-.mode h2{margin:0;font-size:22px;padding-right:90px}
-.mode p{padding-right:70px}
-.mode p{margin:0;color:var(--mute);font-size:15px}
-.mode .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto}
-.mode .art{position:absolute;right:4px;top:4px;width:96px;height:96px;opacity:.85;pointer-events:none}
+.home{flex:1;overflow:auto;padding:34px clamp(16px,4vw,52px) calc(40px + var(--safe-b))}
+.home h1{font-size:clamp(30px,4vw,40px);font-weight:700;margin:0 0 4px;letter-spacing:-.6px}
+.home .sub{color:var(--mute);margin:0 0 28px;font-size:16px}
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;margin-bottom:36px}
+.mode{background:var(--card);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04),0 0 0 1px var(--sep)}
+.mode h2{margin:0;font-size:20px;font-weight:650;padding-right:90px;letter-spacing:-.2px}
+.mode p{margin:0;color:var(--mute);font-size:14.5px;padding-right:70px}
+.mode .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:6px}
+.mode .art{position:absolute;right:8px;top:8px;width:84px;height:84px;opacity:.9;pointer-events:none}
 .sect{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px;gap:10px;flex-wrap:wrap}
-.sect h3{margin:0;font-size:19px}
-.projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
-.proj{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;display:flex;flex-direction:column}
-.proj .th{aspect-ratio:4/3;background:#efe7da center/contain no-repeat;border-bottom:1px solid var(--line)}
-.proj .meta{padding:9px 10px;display:flex;align-items:center;gap:6px}
-.proj .meta div{flex:1;min-width:0}
+.sect h3{margin:0;font-size:20px;font-weight:650}
+.projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.proj{background:var(--card);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 0 0 1px var(--sep)}
+.proj .th{aspect-ratio:4/3;background:#FAFAFC center/contain no-repeat;border-bottom:1px solid var(--sep);cursor:pointer}
+.proj .meta{padding:9px 6px 9px 12px;display:flex;align-items:center;gap:6px}
+.proj .meta div{flex:1;min-width:0;cursor:pointer}
 .proj .nm{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.proj .ty{font-size:13px;color:var(--mute)}
-.empty{color:var(--mute);padding:26px;text-align:center;border:1.5px dashed var(--line);border-radius:var(--rad)}
-.foot{margin-top:36px;font-size:13px;color:var(--mute)}
+.proj .ty{font-size:12.5px;color:var(--mute)}
+.empty{color:var(--mute);padding:28px;text-align:center;background:var(--card);border-radius:14px;box-shadow:0 0 0 1px var(--sep)}
+.foot{margin-top:36px;font-size:12.5px;color:var(--mute)}
 .foot a{color:var(--mute)}
-.warn{background:#fff4d6;border:1px solid #ecd28c;border-radius:10px;padding:10px 14px;font-size:14px;margin-bottom:18px}
+.warn{background:#FFF8E6;color:#8A5A00;border-radius:12px;padding:10px 14px;font-size:14px;margin-bottom:18px}
+
 /* Éditeur */
-.ed{flex:1;display:grid;grid-template-columns:64px 1fr 320px;grid-template-rows:auto 1fr;min-height:0}
-.top{grid-column:1/-1;display:flex;align-items:center;gap:6px;padding:6px 10px;border-bottom:1px solid var(--line);background:var(--card);min-height:56px}
-.top .title{flex:1;min-width:60px;border:none;background:transparent;font-weight:600;font-size:17px;padding:8px;border-radius:8px}
-.top .title:focus{background:#f3ece0;outline:none}
-.rail{background:var(--card);border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 0;overflow-y:auto}
-.tool{width:50px;height:50px;border-radius:12px;border:1px solid transparent;background:transparent;display:flex;align-items:center;justify-content:center;flex-direction:column;font-size:10px;gap:1px;color:var(--ink)}
+.ed{flex:1;display:grid;grid-template-columns:72px 1fr 320px;grid-template-rows:auto 1fr;min-height:0}
+.top{grid-column:1/-1;display:flex;align-items:center;gap:4px;padding:6px 10px;border-bottom:1px solid var(--sep);background:rgba(255,255,255,.85);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);min-height:54px;z-index:2}
+.top .title{flex:1;min-width:60px;border:none;background:transparent;font-weight:600;font-size:17px;padding:7px 10px;border-radius:8px}
+.top .title:focus{background:var(--bg);outline:none;box-shadow:0 0 0 3px var(--acc-l)}
+.top select{width:auto;min-height:34px;padding:5px 30px 5px 12px;border-radius:999px;background-color:var(--fill);border:none}
+.rail{background:var(--side);border-right:1px solid var(--sep);display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 0;overflow-y:auto}
+.tool{width:58px;height:54px;border-radius:12px;border:none;background:transparent;display:flex;align-items:center;justify-content:center;flex-direction:column;font-size:10.5px;gap:2px;color:var(--ink)}
 .tool svg{width:24px;height:24px}
-.tool.on{background:var(--sel);border-color:#f1b9c3;color:var(--acc)}
-.rail hr{width:36px;border:none;border-top:1px solid var(--line);margin:4px 0}
-.stagewrap{position:relative;min-width:0;min-height:0;background:#e9e1d3;overflow:hidden}
+.tool:hover{background:rgba(0,0,0,.04)}
+.tool.on{background:var(--acc);color:#fff}
+.rail hr{width:38px;border:none;border-top:1px solid var(--line);margin:6px 0}
+.stagewrap{position:relative;min-width:0;min-height:0;background:#E5E5EA;overflow:hidden}
 .stagewrap canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;display:block}
-.zoombar{position:absolute;right:12px;bottom:calc(12px + var(--safe-b));display:flex;gap:6px}
-.zoombar .btn{min-width:44px;background:rgba(255,253,248,.92)}
-.hint{position:absolute;left:12px;bottom:calc(12px + var(--safe-b));background:rgba(42,36,32,.78);color:#fff;font-size:13px;padding:6px 10px;border-radius:8px;pointer-events:none;max-width:60%}
-.side{background:var(--card);border-left:1px solid var(--line);overflow-y:auto;padding:12px 12px calc(16px + var(--safe-b));display:flex;flex-direction:column;gap:14px;min-height:0}
-.box h4{margin:0 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.6px;color:var(--mute)}
-.pal{display:flex;flex-direction:column;gap:4px}
-.pi{display:flex;align-items:center;gap:10px;padding:5px 6px;border-radius:10px;border:1px solid transparent;min-height:44px}
-.pi.on{background:var(--sel);border-color:#f1b9c3}
-.sw{width:34px;height:34px;border-radius:8px;border:1px solid rgba(0,0,0,.15);flex:none;position:relative}
+.zoombar{position:absolute;right:14px;bottom:calc(14px + var(--safe-b));display:flex;gap:2px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-radius:999px;padding:3px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+.zoombar .btn{min-width:40px;min-height:36px;background:transparent;color:var(--ink);padding:4px 10px}
+.zoombar .btn:hover{background:var(--fill)}
+.hint{position:absolute;left:14px;bottom:calc(14px + var(--safe-b));background:rgba(29,29,31,.78);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;font-size:13px;padding:7px 12px;border-radius:10px;pointer-events:none;max-width:60%}
+.side{background:var(--bg);border-left:1px solid var(--sep);overflow-y:auto;padding:12px 12px calc(16px + var(--safe-b));display:flex;flex-direction:column;gap:12px;min-height:0}
+.box{background:var(--card);border-radius:12px;padding:12px;box-shadow:0 0 0 1px var(--sep)}
+.box h4{margin:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--mute);font-weight:600}
+.pal{display:flex;flex-direction:column;gap:2px}
+.pi{display:flex;align-items:center;gap:10px;padding:5px 8px;border-radius:9px;min-height:44px;cursor:pointer}
+.pi:hover{background:var(--bg)}
+.pi.on{background:var(--acc-l)}
+.sw{width:32px;height:32px;border-radius:8px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12);flex:none;position:relative;overflow:hidden}
 .sw canvas{position:absolute;inset:0;width:100%;height:100%}
 .pi .t{flex:1;min-width:0;font-size:14px}
-.pi .t b{display:block}
+.pi .t b{display:block;font-weight:600}
 .pi .t span{color:var(--mute);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
 .pi .n{font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
 .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
@@ -77,64 +95,83 @@ button{touch-action:manipulation;cursor:pointer}
 .fld{display:flex;flex-direction:column;gap:4px;font-size:14px;margin-bottom:10px}
 .fld .lab{display:flex;justify-content:space-between;color:var(--mute);font-size:13px}
 .fld .lab b{color:var(--ink);font-weight:600}
-select,input[type=number],input[type=text],input[type=search]{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;min-height:42px;width:100%}
-input[type=range]{width:100%;accent-color:var(--acc);height:30px}
-input[type=checkbox]{width:22px;height:22px;accent-color:var(--acc);flex:none}
-.chk{display:flex;align-items:center;gap:10px;min-height:40px;font-size:15px}
-.seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
-.seg button{flex:1;border:none;background:#fff;padding:8px 4px;min-height:40px;font-size:13px}
-.seg button.on{background:var(--acc);color:#fff}
+select,input[type=number],input[type=text],input[type=search]{border:1px solid var(--line);background-color:var(--card);border-radius:9px;padding:8px 11px;min-height:40px;width:100%;outline:none;transition:box-shadow .15s,border-color .15s}
+select:focus,input[type=number]:focus,input[type=text]:focus,input[type=search]:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-l)}
+select{-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2386868B' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:32px}
+input[type=search]{background:var(--fill);border-color:transparent}
+/* Curseur fin façon macOS */
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent}
+input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:#D1D1D6}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;margin-top:-10px;box-shadow:0 1px 4px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.08)}
+input[type=range]::-moz-range-track{height:4px;border-radius:2px;background:#D1D1D6}
+input[type=range]::-moz-range-progress{height:4px;border-radius:2px;background:var(--acc)}
+input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:none;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+/* Interrupteurs iOS à la place des cases à cocher */
+input[type=checkbox]{-webkit-appearance:none;appearance:none;width:46px;height:28px;border-radius:14px;background:#E5E5EA;position:relative;flex:none;cursor:pointer;transition:background .2s;margin:0}
+input[type=checkbox]::after{content:"";position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.2),0 0 0 .5px rgba(0,0,0,.05);transition:transform .2s}
+input[type=checkbox]:checked{background:var(--green)}
+input[type=checkbox]:checked::after{transform:translateX(18px)}
+.chk{display:flex;align-items:center;justify-content:space-between;flex-direction:row-reverse;gap:12px;min-height:42px;font-size:14.5px;cursor:pointer}
+.chk>input{order:0}
+/* Contrôle segmenté */
+.seg{display:flex;background:var(--fill);border-radius:9px;padding:2px;gap:2px}
+.seg button{flex:1;border:none;background:transparent;padding:6px 6px;min-height:32px;font-size:13px;border-radius:7px;color:var(--ink)}
+.seg button.on{background:var(--card);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.12),0 0 0 .5px rgba(0,0,0,.04)}
 .stitches{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.stitches button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px;min-height:48px;text-align:left;font-size:13px;display:flex;gap:8px;align-items:center}
-.stitches button.on{background:var(--sel);border-color:var(--acc);color:var(--acc)}
+.stitches button{border:none;background:var(--bg);border-radius:10px;padding:8px 10px;min-height:46px;text-align:left;font-size:13px;display:flex;gap:8px;align-items:center;color:var(--ink)}
+.stitches button.on{background:var(--acc);color:#fff}
 .stitches i{font-style:normal;font-size:18px;width:22px;text-align:center}
-.chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{width:36px;height:36px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--line)}
-.chip.on{box-shadow:0 0 0 2px var(--acc)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{width:30px;height:30px;border-radius:50%;border:none;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12);padding:0}
+.chip.on{box-shadow:0 0 0 2px var(--card),0 0 0 4px var(--acc)}
 .stat{font-size:13px;color:var(--mute);line-height:1.6}
-.stat b{color:var(--ink)}
-/* Modales */
-.ov{position:fixed;inset:0;background:rgba(30,24,20,.45);display:flex;align-items:center;justify-content:center;z-index:100;padding:calc(16px + var(--safe-t)) 16px calc(16px + var(--safe-b))}
-.dlg{background:var(--card);border-radius:20px;max-width:560px;width:100%;max-height:100%;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.stat b{color:var(--ink);font-weight:600}
+
+/* Fenêtres (feuilles) */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.28);display:flex;align-items:center;justify-content:center;z-index:100;padding:calc(16px + var(--safe-t)) 16px calc(16px + var(--safe-b));animation:fade .15s ease-out}
+.dlg{background:var(--bg);border-radius:14px;max-width:560px;width:100%;max-height:100%;display:flex;flex-direction:column;box-shadow:0 24px 70px rgba(0,0,0,.28),0 0 0 .5px rgba(0,0,0,.1);animation:pop .18s ease-out;overflow:hidden}
 .dlg.wide{max-width:1100px;height:100%}
-.dlg .hd{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
-.dlg .hd h3{margin:0;flex:1;font-size:19px}
+.dlg .hd{padding:12px 14px 12px 20px;border-bottom:1px solid var(--sep);display:flex;align-items:center;gap:10px;background:var(--card)}
+.dlg .hd h3{margin:0;flex:1;font-size:16px;font-weight:650;text-align:center;padding-left:40px}
+.dlg .hd .btn.ghost{width:34px;min-height:34px;padding:0;border-radius:50%;background:var(--fill);color:var(--mute);font-size:13px}
 .dlg .bd{padding:16px 20px;overflow:auto;flex:1;min-height:0}
-.dlg .ft{padding:12px 20px;border-top:1px solid var(--line);display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
-.prep{display:grid;grid-template-columns:1fr 320px;gap:16px;height:100%;min-height:0}
+.dlg .ft{padding:12px 20px;border-top:1px solid var(--sep);display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;background:var(--card)}
+@keyframes fade{from{opacity:0}}
+@keyframes pop{from{opacity:0;transform:scale(.97)}}
+.prep{display:grid;grid-template-columns:1fr 330px;gap:16px;height:100%;min-height:0}
 .prep .views{display:grid;grid-template-rows:1fr 1fr;gap:10px;min-height:0}
-.prep .pv{position:relative;background:#e9e1d3;border-radius:12px;overflow:hidden;min-height:180px}
+.prep .pv{position:relative;background:#E5E5EA;border-radius:12px;overflow:hidden;min-height:180px}
 .prep .pv canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
-.prep .pv .cap{position:absolute;left:8px;top:8px;background:rgba(255,253,248,.9);border-radius:6px;padding:2px 8px;font-size:12px;color:var(--mute);pointer-events:none}
-.prep .opts{overflow:auto;padding-right:4px}
-.dmcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px}
-.dmcgrid button{border:1px solid var(--line);border-radius:10px;background:#fff;padding:0;overflow:hidden;min-height:64px;display:flex;flex-direction:column}
+.prep .pv .cap{position:absolute;left:8px;top:8px;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:7px;padding:3px 9px;font-size:12px;color:var(--mute);pointer-events:none}
+.prep .opts{overflow:auto;padding:12px;background:var(--card);border-radius:12px;box-shadow:0 0 0 1px var(--sep)}
+.dmcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(62px,1fr));gap:6px}
+.dmcgrid button{border:none;border-radius:10px;background:var(--card);padding:0;overflow:hidden;min-height:62px;display:flex;flex-direction:column;box-shadow:0 0 0 1px var(--sep)}
 .dmcgrid button .c{flex:1;min-height:36px}
 .dmcgrid button span{font-size:12px;padding:3px 0;font-weight:600}
-.dmcgrid button.on{outline:3px solid var(--acc)}
+.dmcgrid button.on{box-shadow:0 0 0 3px var(--acc)}
 .fmt{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
-.fmt button{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px;text-align:left;min-height:64px}
-.fmt button b{display:block;font-size:17px}
+.fmt button{border:none;background:var(--bg);border-radius:12px;padding:10px 12px;text-align:left;min-height:62px;color:var(--ink)}
+.fmt button b{display:block;font-size:16px}
 .fmt button span{font-size:12px;color:var(--mute)}
-.fmt button.on{border-color:var(--acc);background:var(--sel)}
-.card{border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px;background:#fff}
-.card h4{margin:0 0 10px;font-size:16px}
+.fmt button.on{background:var(--acc-l);box-shadow:0 0 0 2px var(--acc)}
+.card{border-radius:12px;padding:14px 16px;margin-bottom:12px;background:var(--card);box-shadow:0 0 0 1px var(--sep)}
+.card h4{margin:0 0 10px;font-size:16px;font-weight:650}
 .note{font-size:13px;color:var(--mute)}
-.alert{color:#9a5b00;font-size:13px;background:#fff4d6;border-radius:8px;padding:6px 10px;margin-top:6px}
-.busy{position:fixed;inset:0;background:rgba(255,253,248,.7);display:flex;align-items:center;justify-content:center;z-index:80;font-weight:600;flex-direction:column;gap:12px}
-.spin{width:36px;height:36px;border:4px solid var(--line);border-top-color:var(--acc);border-radius:50%;animation:sp 1s linear infinite}
+.alert{color:#8A5A00;font-size:13px;background:#FFF8E6;border-radius:9px;padding:7px 10px;margin-top:6px}
+.busy{position:fixed;inset:0;background:rgba(245,245,247,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;z-index:80;font-weight:600;flex-direction:column;gap:12px}
+.spin{width:30px;height:30px;border:3px solid var(--line);border-top-color:var(--acc);border-radius:50%;animation:sp .8s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(24px + var(--safe-b));background:var(--ink);color:#fff;padding:10px 16px;border-radius:12px;z-index:120;font-size:14px;max-width:90%}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(24px + var(--safe-b));background:rgba(29,29,31,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;padding:10px 18px;border-radius:999px;z-index:120;font-size:14px;max-width:90%}
 .sidetoggle{display:none}
 @media (max-width:900px) and (orientation:portrait){
-  .ed{grid-template-columns:60px 1fr;grid-template-rows:auto 1fr auto}
-  .side{grid-column:1/-1;border-left:none;border-top:1px solid var(--line);max-height:38vh}
+  .ed{grid-template-columns:66px 1fr;grid-template-rows:auto 1fr auto}
+  .side{grid-column:1/-1;border-left:none;border-top:1px solid var(--sep);max-height:38vh}
   .side.collapsed{max-height:52px;overflow:hidden}
   .sidetoggle{display:inline-flex}
   .prep{grid-template-columns:1fr;grid-template-rows:1fr auto}
   .prep .opts{max-height:40vh}
 }
-@media (max-width:700px){.ed{grid-template-columns:56px 1fr}.tool{width:46px;height:46px}}
+@media (max-width:700px){.ed{grid-template-columns:60px 1fr}.tool{width:52px;height:50px}}
 </style></head>
 <body><div id="app"></div>
 <script>(function(){"use strict";
@@ -250,7 +287,7 @@ function lum(rgb) { return 0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]; }
 function convertImage(srcCanvas, opt) {
   if (opt.style === 'pixel') return convertPixelArt(srcCanvas, opt);
   const W = Math.max(5, Math.round(opt.width));
-  const H = Math.max(5, Math.round(W * srcCanvas.height / srcCanvas.width));
+  const H = Math.max(5, Math.round(W * srcCanvas.height / srcCanvas.width * (opt.yScale || 1)));
   // réduction par moyenne de zone (qualité supérieure au redimensionnement Safari)
   const sw = srcCanvas.width, sh = srcCanvas.height;
   const sctx = srcCanvas.getContext('2d', { willReadFrequently: true });
@@ -307,7 +344,7 @@ function convertImage(srcCanvas, opt) {
   const cents = kmeansLab(sample.map(k => [L[k], Aa[k], Bb[k]]), Math.min(K + 4, sample.length), 10);
   // centroïdes -> DMC, dédoublonnage
   let pal = [], seen = new Set();
-  for (const c of cents) { const d = nearestDMC(c); if (!seen.has(d.code)) { seen.add(d.code); pal.push(d); } }
+  for (const c of cents) { const d = opt.freeColors ? freeColor(c) : nearestDMC(c); if (!seen.has(d.code)) { seen.add(d.code); pal.push(d); } }
   // assignation, puis réduction au nombre demandé en fusionnant les fils les moins utilisés
   const assign = (palette, dither) => {
     const cells = new Int16Array(n).fill(-1);
@@ -334,8 +371,7 @@ function convertImage(srcCanvas, opt) {
   let cells = assign(pal, false);
   while (pal.length > K) {
     const cnt = new Array(pal.length).fill(0); for (const c of cells) if (c >= 0) cnt[c]++;
-    let mi = 0; for (let i = 1; i < pal.length; i++) if (cnt[i] < cnt[mi]) mi = i;
-    pal.splice(mi, 1); cells = assign(pal, false);
+    pal.splice(closestPairDrop(pal, cnt), 1); cells = assign(pal, false);
   }
   if (opt.dither) cells = assign(pal, true);
   // nettoyage des points isolés
@@ -537,7 +573,7 @@ function kuwahara(s, W, H) {
 }
 function convertPixelArt(srcCanvas, opt) {
   const W = Math.max(5, Math.round(opt.width));
-  const H = Math.max(5, Math.round(W * srcCanvas.height / srcCanvas.width));
+  const H = Math.max(5, Math.round(W * srcCanvas.height / srcCanvas.width * (opt.yScale || 1)));
   const S = W * H > 40000 ? 3 : 4; // sous-points par case
   const W2 = W * S, H2 = H * S, n2 = W2 * H2, n = W * H;
   const s = sampleGrid(srcCanvas, W2, H2, opt);
@@ -575,7 +611,7 @@ function convertPixelArt(srcCanvas, opt) {
     if (a[3]) cents.push([a[0] / a[3], a[1] / a[3], a[2] / a[3]]);
   }
   let pal = [], seen = new Set();
-  for (const c of cents) { const d = nearestDMC(c); if (!seen.has(d.code)) { seen.add(d.code); pal.push(d); } }
+  for (const c of cents) { const d = opt.freeColors ? freeColor(c) : nearestDMC(c); if (!seen.has(d.code)) { seen.add(d.code); pal.push(d); } }
   // vote majoritaire des sous-points dans chaque case
   const vote = palette => {
     const cells = new Int16Array(n).fill(-1), cnt = new Int32Array(palette.length + 1);
@@ -602,8 +638,7 @@ function convertPixelArt(srcCanvas, opt) {
   while (pal.length > K) {
     const cnt = new Array(pal.length).fill(0); for (const c of cells) if (c >= 0) cnt[c]++;
     let dk = 0; pal.forEach((p, i) => { if (p.lab[0] < pal[dk].lab[0]) dk = i; });
-    let mi = -1; for (let i = 0; i < pal.length; i++) { if (i === dk && pal[i].lab[0] < 32) continue; if (mi < 0 || cnt[i] < cnt[mi]) mi = i; }
-    pal.splice(mi, 1); cells = vote(pal);
+    pal.splice(closestPairDrop(pal, cnt, pal[dk].lab[0] < 32 ? dk : -1), 1); cells = vote(pal);
   }
   simplifyRegions(cells, W, H, opt.simplify ?? 2, pal);
   if (opt.outline) addOutline(cells, W, H, pal);
@@ -643,6 +678,33 @@ function addOutline(cells, W, H, pal) {
     if (cells[k - 1] < 0 || cells[k + 1] < 0 || cells[k - W] < 0 || cells[k + W] < 0) out.push(k);
   }
   for (const k of out) cells[k] = dark;
+}
+
+/* ===================== Couleurs libres (laines) ===================== */
+function lab2rgb(L, a, b) {
+  let y = (L + 16) / 116, x = a / 500 + y, z = y - b / 200;
+  const f = t => t ** 3 > 0.008856 ? t ** 3 : (t - 16 / 116) / 7.787;
+  x = f(x) * 0.95047; y = f(y); z = f(z) * 1.08883;
+  let r = x * 3.2404542 + y * -1.5371385 + z * -0.4985314, g = x * -0.9692660 + y * 1.8760108 + z * 0.0415560, bb = x * 0.0556434 + y * -0.2040259 + z * 1.0572252;
+  const c = v => { v = v <= 0.0031308 ? 12.92 * v : 1.055 * Math.pow(v, 1 / 2.4) - 0.055; return Math.max(0, Math.min(255, Math.round(v * 255))); };
+  return [c(r), c(g), c(bb)];
+}
+const toHex = rgb => '#' + rgb.map(v => v.toString(16).padStart(2, '0')).join('');
+function mkYarn(name, hex) { const rgb = hexToRgb(hex); return { code: hex.toLowerCase(), name, hex: hex.toLowerCase(), rgb, lab: rgb2lab(...rgb), yarn: true }; }
+function freeColor(lab) { const hex = toHex(lab2rgb(...lab)); return mkYarn(yarnName(hex), hex); }
+const YARN_NAMES = [['Blanc', '#f7f5f0'], ['Écru', '#efe6d2'], ['Beige', '#d8c3a0'], ['Camel', '#b8875a'], ['Marron', '#6b4a32'], ['Chocolat', '#3e2a1e'], ['Noir', '#1d1d1f'], ['Gris anthracite', '#3d3f44'], ['Gris', '#8d8f94'], ['Gris clair', '#c9cacd'], ['Rouge', '#c3272b'], ['Bordeaux', '#6e1f2b'], ['Rose', '#e88aa6'], ['Rose poudré', '#e9c2c0'], ['Fuchsia', '#c2276d'], ['Orange', '#e8742a'], ['Rouille', '#a4492a'], ['Moutarde', '#d2a226'], ['Jaune', '#f2cf3b'], ['Vert sapin', '#1f4a3a'], ['Vert', '#3d8a4a'], ['Vert amande', '#a9c79a'], ['Kaki', '#6f6a3e'], ['Bleu marine', '#1c2a4a'], ['Bleu', '#2f5fa8'], ['Bleu ciel', '#9cc3e6'], ['Bleu canard', '#1f6a72'], ['Violet', '#5b3a7e'], ['Lilas', '#b9a3d0'], ['Turquoise', '#3fb2b0']];
+function yarnName(hex) { const l = rgb2lab(...hexToRgb(hex)); let best = 'Couleur', bd = 1e9; for (const [n, x] of YARN_NAMES) { const d = ciede2000(l, rgb2lab(...hexToRgb(x))); if (d < bd) { bd = d; best = n; } } return best; }
+
+// Choisit la couleur à retirer : dans la paire de teintes les plus proches, la moins utilisée
+function closestPairDrop(pal, cnt, keep = -1) {
+  let bi = -1, bj = -1, bd = Infinity;
+  for (let i = 0; i < pal.length; i++) for (let j = i + 1; j < pal.length; j++) {
+    const d = ciede2000(pal[i].lab, pal[j].lab) * (1 + 0.15 * Math.log10(1 + Math.min(cnt[i], cnt[j])));
+    if (d < bd) { bd = d; bi = i; bj = j; }
+  }
+  let drop = cnt[bi] < cnt[bj] ? bi : bj;
+  if (drop === keep) drop = drop === bi ? bj : bi;
+  return drop;
 }
 
 'use strict';
@@ -1439,6 +1501,8 @@ const ICONS = {
   dots: '<circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/>',
   eye: '<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="currentColor"/>',
   fit: '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2"/>',
+  letterA: '<text x="12" y="18.5" text-anchor="middle" font-size="18" font-weight="800" font-family="Helvetica,Arial" fill="currentColor">A</text>',
+  letterD: '<text x="12" y="18.5" text-anchor="middle" font-size="18" font-weight="800" font-family="Helvetica,Arial" fill="currentColor">D</text>',
   panel: '<path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2"/>',
 };
 const icon = (n, s = 24) => { const sp = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); sp.setAttribute('viewBox', '0 0 24 24'); sp.setAttribute('width', s); sp.setAttribute('height', s); sp.innerHTML = ICONS[n]; return sp; };
@@ -1681,16 +1745,19 @@ async function showHome() {
   const root = $('#app'); root.innerHTML = '';
   const list = h('div', { class: 'projects' });
   const art1 = h('canvas', { class: 'art', width: 240, height: 240 }), art2 = h('canvas', { class: 'art', width: 240, height: 240 });
-  drawArt(art1, 'croix'); drawArt(art2, 'main');
+  const art3 = h('canvas', { class: 'art', width: 240, height: 240 });
+  drawArt(art1, 'croix'); drawArt(art2, 'main'); drawArt(art3, 'jacquard');
   const page = h('div', { class: 'home' },
     h('h1', {}, 'Atelier Broderie'),
-    h('p', { class: 'sub' }, 'Grilles de point de croix et motifs de broderie main, à dessiner au Pencil — export PDF et fichiers pour brodeuse.'),
+    h('p', { class: 'sub' }, 'Point de croix, broderie main et jacquard pour le tricot, à dessiner au Pencil — export PDF, fichiers pour brodeuse et machine à tricoter.'),
     Store.ok ? null : h('div', { class: 'warn' }, 'Dans cet affichage, les projets ne sont pas gardés après fermeture. Pense à « Exporter → Sauvegarde du projet » pour les conserver.'),
     h('div', { class: 'modes' },
       h('div', { class: 'mode' }, art1, h('h2', {}, 'Point de croix'), h('p', {}, 'Transforme une photo, une image ou un PDF en grille aux couleurs DMC, puis retouche au Pencil.'),
         h('div', { class: 'acts' }, h('button', { class: 'btn pri', onclick: () => newCroixFromImage() }, 'Depuis une image / PDF'), h('button', { class: 'btn', onclick: () => newCroixBlank() }, 'Grille vierge'))),
       h('div', { class: 'mode' }, art2, h('h2', {}, 'Point main'), h('p', {}, 'Dessine ton motif au Pencil avec de vrais points (tige, chaînette, bourdon, plumetis…), en décalquant une image si tu veux.'),
-        h('div', { class: 'acts' }, h('button', { class: 'btn sec', onclick: () => newMain(false) }, 'Nouveau dessin'), h('button', { class: 'btn', onclick: () => newMain(true) }, 'Décalquer une image / PDF')))),
+        h('div', { class: 'acts' }, h('button', { class: 'btn pri', onclick: () => newMain(false) }, 'Nouveau dessin'), h('button', { class: 'btn', onclick: () => newMain(true) }, 'Décalquer une image / PDF'))),
+      h('div', { class: 'mode' }, art3, h('h2', {}, 'Jacquard (tricot)'), h('p', {}, 'Grille de tricot aux proportions de ta maille, contrôle des flottés, motifs répétés — depuis une image ou à dessiner.'),
+        h('div', { class: 'acts' }, h('button', { class: 'btn pri', onclick: () => newJacquardFromImage() }, 'Depuis une image / PDF'), h('button', { class: 'btn', onclick: () => newJacquardBlank() }, 'Grille vierge')))),
     h('div', { class: 'sect' }, h('h3', {}, 'Mes projets'), h('button', { class: 'btn sm', onclick: importProject }, 'Importer une sauvegarde (.json)')),
     list,
     h('div', { class: 'foot' }, 'Couleurs DMC : ', h('a', { href: 'https://makebead.com/' }, 'MakeBead'), ' (craft-color-codes, CC BY 4.0) — les teintes à l’écran sont indicatives. Écriture des formats brodeuse d’après pyembroidery (MIT). Lecture PDF : pdf.js (Apache 2.0).'));
@@ -1701,19 +1768,22 @@ async function showHome() {
     list.append(h('div', { class: 'proj' },
       h('div', { class: 'th', style: { backgroundImage: p.thumb ? `url(${p.thumb})` : '' }, onclick: () => openProject(p.id) }),
       h('div', { class: 'meta' },
-        h('div', { onclick: () => openProject(p.id) }, h('div', { class: 'nm' }, p.name), h('div', { class: 'ty' }, (p.type === 'croix' ? 'Point de croix' : 'Point main') + ' · ' + new Date(p.updated).toLocaleDateString('fr-FR'))),
+        h('div', { onclick: () => openProject(p.id) }, h('div', { class: 'nm' }, p.name), h('div', { class: 'ty' }, ({ croix: 'Point de croix', main: 'Point main', jacquard: 'Jacquard' }[p.type] || '') + ' · ' + new Date(p.updated).toLocaleDateString('fr-FR'))),
         h('button', { class: 'btn ghost sm', 'aria-label': 'Options', onclick: () => projectMenu(p) }, icon('dots', 20)))));
   }
 }
 function drawArt(c, kind) {
   const ctx = c.getContext('2d');
   if (kind === 'croix') {
-    const cols = ['#b0283f', '#e07a5f', '#2f6b5a', '#f2cc8f'];
+    const cols = ['#FF3B30', '#FF9500', '#34C759', '#0A84FF'];
     for (let y = 0; y < 8; y++) for (let x = 0; x < 8; x++) { if ((x - 4) ** 2 + (y - 4) ** 2 > 14 || (x + y) % 5 === 0) continue; ctx.strokeStyle = cols[(x * 3 + y) % 4]; ctx.lineWidth = 5; ctx.lineCap = 'round'; const X = 40 + x * 22, Y = 40 + y * 22; ctx.beginPath(); ctx.moveTo(X + 4, Y + 4); ctx.lineTo(X + 18, Y + 18); ctx.moveTo(X + 18, Y + 4); ctx.lineTo(X + 4, Y + 18); ctx.stroke(); }
+  } else if (kind === 'jacquard') {
+    const m = ['..X...X..', '.XXX.XXX.', 'XX.XXX.XX', '.XXX.XXX.', '..X...X..'];
+    for (let y = 0; y < 7; y++) for (let x = 0; x < 9; x++) { const on = y > 0 && y < 6 && m[y - 1][x] === 'X'; ctx.fillStyle = on ? '#0A84FF' : '#E5E5EA'; const X = 30 + x * 20, Y = 40 + y * 24; ctx.beginPath(); ctx.ellipse(X + 5, Y + 12, 5, 11, -.35, 0, 7); ctx.ellipse(X + 15, Y + 12, 5, 11, .35, 0, 7); ctx.fill(); }
   } else {
-    ctx.lineWidth = 5; ctx.lineCap = 'round'; ctx.strokeStyle = '#2f6b5a'; ctx.setLineDash([12, 9]);
+    ctx.lineWidth = 5; ctx.lineCap = 'round'; ctx.strokeStyle = '#34C759'; ctx.setLineDash([12, 9]);
     ctx.beginPath(); ctx.moveTo(30, 200); ctx.bezierCurveTo(80, 60, 150, 220, 210, 60); ctx.stroke(); ctx.setLineDash([]);
-    ctx.fillStyle = '#b0283f'; for (const [x, y] of [[120, 70], [150, 90], [100, 100]]) { ctx.beginPath(); ctx.arc(x, y, 9, 0, 7); ctx.fill(); }
+    ctx.fillStyle = '#FF3B30'; for (const [x, y] of [[120, 70], [150, 90], [100, 100]]) { ctx.beginPath(); ctx.arc(x, y, 9, 0, 7); ctx.fill(); }
   }
 }
 function projectMenu(p) {
@@ -1733,7 +1803,7 @@ async function importProject() {
 }
 async function openProject(id, p) {
   p = p || await Store.get(id); if (!p) return toast('Projet introuvable');
-  if (p.type === 'croix') openCroix(p); else openMain(p);
+  if (p.type === 'croix') openCroix(p); else if (p.type === 'jacquard') openJacquard(p); else openMain(p);
 }
 const App = { current: null };
 
@@ -1781,9 +1851,11 @@ async function newCroixBlank() {
 }
 
 /* ---------- Préparation de l'image (recadrage + réglages) ---------- */
-function prepDialog(src, conv) {
+function prepDialog(src, conv, mode = 'croix') {
+  const jq = mode === 'jacquard';
   return new Promise(resolve => {
-    const o = Object.assign({ style: 'pixel', simplify: 2, outline: false, width: Math.min(60, Math.round(src.width / 8)), colors: 12, dither: false, removeBg: true, bgTol: 12, cleanup: true, brightness: 0, contrast: 0, saturation: 0, fabric: 1, count: 14, crop: { x: 0, y: 0, w: 1, h: 1 } }, conv || {});
+    const o = Object.assign(jq ? { colors: 4, width: 60, sts: 22, rows: 30, removeBg: false, freeColors: true } : {}, { style: 'pixel', simplify: 2, outline: false, width: Math.min(60, Math.round(src.width / 8)), colors: 12, dither: false, removeBg: true, bgTol: 12, cleanup: true, brightness: 0, contrast: 0, saturation: 0, fabric: 1, count: 14, crop: { x: 0, y: 0, w: 1, h: 1 } }, jq ? { colors: 4, width: 60, sts: 22, rows: 30, removeBg: false, freeColors: true } : {}, conv || {});
+    const yr = () => jq ? o.sts / o.rows : 1;
     let result = null;
     const cropC = h('canvas'), prevC = h('canvas');
     const pv1 = h('div', { class: 'pv' }, cropC, h('div', { class: 'cap' }, 'Image — fais glisser les coins pour recadrer'));
@@ -1808,10 +1880,10 @@ function prepDialog(src, conv) {
     const applyStyle = () => {
       const px = o.style === 'pixel';
       pixelOnly.style.display = px ? '' : 'none'; photoOnly.style.display = px ? 'none' : '';
-      styleInfo.textContent = px ? 'Aplats de couleur nets et peu de couleurs : le rendu le plus lisible une fois brodé. Idéal pour dessins, logos, personnages, animaux…' : 'Garde les nuances et les détails : pour les photos et portraits, avec davantage de couleurs et une grille plus large.';
+      styleInfo.textContent = px ? (jq ? 'Aplats nets et peu de couleurs : idéal en jacquard (2 couleurs par rang conseillées).' : 'Aplats de couleur nets et peu de couleurs : le rendu le plus lisible une fois brodé.') + ' Idéal pour dessins, logos, personnages, animaux…' : 'Garde les nuances et les détails : pour les photos et portraits, avec davantage de couleurs et une grille plus large.';
     };
     const styleSeg = seg([{ v: 'pixel', l: 'Pixel art (conseillé)' }, { v: 'photo', l: 'Photo détaillée' }], o.style, v => {
-      o.style = v; o.colors = v === 'pixel' ? 12 : 24;
+      o.style = v; o.colors = jq ? (v === 'pixel' ? 4 : 8) : (v === 'pixel' ? 12 : 24);
       const r = colorsRange.querySelector('input'); r.value = o.colors; colorsRange.querySelector('.lab b').textContent = o.colors;
       applyStyle(); schedule();
     });
@@ -1819,17 +1891,17 @@ function prepDialog(src, conv) {
     const opts = h('div', { class: 'opts' },
       h('div', { class: 'fld' }, h('span', { class: 'lab' }, 'Style'), styleSeg), styleInfo,
       num('Largeur', 'width', 20, 400, 1, ' points'),
-      field('Toile', fabSel),
+      jq ? h('div', { class: 'row' }, field('Mailles / 10 cm', h('input', { type: 'number', value: o.sts, min: 5, max: 60, oninput: e => { o.sts = +e.target.value || 22; schedule(); } })), field('Rangs / 10 cm', h('input', { type: 'number', value: o.rows, min: 5, max: 80, oninput: e => { o.rows = +e.target.value || 30; schedule(); } }))) : field('Toile', fabSel),
       colorsRange,
       pixelOnly, photoOnly,
-      chk('Ne pas broder le fond', 'removeBg'),
+      chk(jq ? 'Fond uni (une seule couleur de fond)' : 'Ne pas broder le fond', 'removeBg'),
       num('Tolérance du fond', 'bgTol', 3, 40, 1),
       num('Luminosité', 'brightness', -50, 50, 1),
       num('Contraste', 'contrast', -50, 80, 1),
       num('Saturation', 'saturation', -60, 80, 1),
       stats);
     const body = h('div', { class: 'prep' }, h('div', { class: 'views' }, pv1, pv2), opts);
-    const dlg = modal({ title: 'Préparer le point de croix', body, wide: true, onClose: v => resolve(v && result ? { grid: result, conv: o } : null), actions: [{ label: 'Annuler', value: false }, { label: 'Créer la grille', cls: 'pri', value: true, fn: () => { if (!result) return false; } }] });
+    const dlg = modal({ title: jq ? 'Préparer le jacquard' : 'Préparer le point de croix', body, wide: true, onClose: v => resolve(v && result ? { grid: result, conv: o } : null), actions: [{ label: 'Annuler', value: false }, { label: 'Créer la grille', cls: 'pri', value: true, fn: () => { if (!result) return false; } }] });
     // recadrage
     let fitR = null, drag = null;
     const drawCrop = () => {
@@ -1844,7 +1916,7 @@ function prepDialog(src, conv) {
       ctx.fillStyle = 'rgba(30,24,20,.5)';
       ctx.fillRect(x, y, w, cy - y); ctx.fillRect(x, cy + ch, w, y + hh - cy - ch); ctx.fillRect(x, cy, cx - x, ch); ctx.fillRect(cx + cw, cy, x + w - cx - cw, ch);
       ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.strokeRect(cx, cy, cw, ch);
-      ctx.fillStyle = '#fff'; for (const [px, py] of [[cx, cy], [cx + cw, cy], [cx, cy + ch], [cx + cw, cy + ch]]) { ctx.beginPath(); ctx.arc(px, py, 9, 0, 7); ctx.fill(); ctx.strokeStyle = '#b0283f'; ctx.stroke(); }
+      ctx.fillStyle = '#fff'; for (const [px, py] of [[cx, cy], [cx + cw, cy], [cx, cy + ch], [cx + cw, cy + ch]]) { ctx.beginPath(); ctx.arc(px, py, 9, 0, 7); ctx.fill(); ctx.strokeStyle = '#0A84FF'; ctx.stroke(); }
     };
     cropC.addEventListener('pointerdown', e => {
       const r = cropC.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top, f = fitR, c = o.crop;
@@ -1871,17 +1943,18 @@ function prepDialog(src, conv) {
       const r = pv2.getBoundingClientRect(), d = window.devicePixelRatio || 1; prevC.width = r.width * d; prevC.height = r.height * d;
       const ctx = prevC.getContext('2d'); ctx.setTransform(d, 0, 0, d, 0, 0);
       if (!result) return;
-      const g = result, k = Math.min((r.width - 20) / g.w, (r.height - 36) / g.h), x0 = (r.width - g.w * k) / 2, y0 = (r.height - g.h * k) / 2 + 10;
-      ctx.fillStyle = '#fbf8f1'; ctx.fillRect(x0, y0, g.w * k, g.h * k);
-      for (let y = 0; y < g.h; y++) for (let x = 0; x < g.w; x++) { const v = g.cells[y * g.w + x]; if (v < 0) continue; ctx.fillStyle = g.palette[v].hex; ctx.fillRect(x0 + x * k, y0 + y * k, k + 0.5, k + 0.5); }
-      if (k >= 4) { ctx.strokeStyle = 'rgba(0,0,0,.12)'; ctx.lineWidth = 1; ctx.beginPath(); for (let x = 0; x <= g.w; x++) { ctx.moveTo(Math.round(x0 + x * k) + .5, y0); ctx.lineTo(Math.round(x0 + x * k) + .5, y0 + g.h * k); } for (let y = 0; y <= g.h; y++) { ctx.moveTo(x0, Math.round(y0 + y * k) + .5); ctx.lineTo(x0 + g.w * k, Math.round(y0 + y * k) + .5); } ctx.stroke(); }
+      const g = result, ar = jq ? o.sts / o.rows : 1, k = Math.min((r.width - 20) / g.w, (r.height - 36) / (g.h * ar)), kk = k * ar, x0 = (r.width - g.w * k) / 2, y0 = (r.height - g.h * kk) / 2 + 10;
+      ctx.fillStyle = '#fbf8f1'; ctx.fillRect(x0, y0, g.w * k, g.h * kk);
+      for (let y = 0; y < g.h; y++) for (let x = 0; x < g.w; x++) { const v = g.cells[y * g.w + x]; if (v < 0) continue; ctx.fillStyle = g.palette[v].hex; ctx.fillRect(x0 + x * k, y0 + y * kk, k + 0.5, kk + 0.5); }
+      if (k >= 4) { ctx.strokeStyle = 'rgba(0,0,0,.12)'; ctx.lineWidth = 1; ctx.beginPath(); for (let x = 0; x <= g.w; x++) { ctx.moveTo(Math.round(x0 + x * k) + .5, y0); ctx.lineTo(Math.round(x0 + x * k) + .5, y0 + g.h * kk); } for (let y = 0; y <= g.h; y++) { ctx.moveTo(x0, Math.round(y0 + y * kk) + .5); ctx.lineTo(x0 + g.w * k, Math.round(y0 + y * kk) + .5); } ctx.stroke(); }
     };
     let timer = null, gen = 0;
     const schedule = () => { clearTimeout(timer); timer = setTimeout(run, 220); };
     const run = async () => {
       const my = ++gen; stats.textContent = 'Calcul…'; await nextFrame(); if (my !== gen) return;
-      try { result = convertImage(cropped(), o); } catch (e) { stats.textContent = 'Erreur : ' + e.message; return; }
+      try { o.yScale = 1 / yr(); result = convertImage(cropped(), o); if (jq) result = fillBackground(result); } catch (e) { stats.textContent = 'Erreur : ' + e.message; return; }
       const n = result.cells.reduce((a, v) => a + (v >= 0), 0);
+      if (jq) { stats.innerHTML = `<b>${result.w}</b> mailles × <b>${result.h}</b> rangs · <b>${result.palette.length}</b> couleurs<br>Taille tricotée : <b>${(result.w / o.sts * 10).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} × ${(result.h / o.rows * 10).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} cm</b>`; drawPrev(); return; }
       stats.innerHTML = `<b>${result.w} × ${result.h}</b> points · <b>${result.palette.length}</b> couleurs DMC<br><b>${fmt(n)}</b> points à broder<br>Taille brodée : <b>${cm(result.w, o.count)} × ${cm(result.h, o.count)} cm</b> sur ${FABRICS[o.fabric].l}`;
       drawPrev();
     };
@@ -1895,7 +1968,7 @@ function prepDialog(src, conv) {
 function openCroix(p) { App.current && App.current.destroy && App.current.destroy(); App.current = new CroixEditor(p); }
 class CroixEditor {
   constructor(p) {
-    this.p = p; this.g = projectToGrid(p);
+    this.p = p; this.g = this.loadGrid(p);
     if (!this.g.palette.length) this.g.palette.push(DMC_BY_CODE.get('310'));
     this.tool = 'pencil'; this.prevTool = 'pencil'; this.brush = 1; this.cur = 0; this.view = p.view || 'both'; this.showGrid = true;
     this.undo = []; this.redo = []; this.bsDraft = null;
@@ -1906,9 +1979,14 @@ class CroixEditor {
   }
   destroy() { this.persist(); this.stage && this.stage.destroy(); }
   get count() { return this.p.count || 14; }
+  get eraseValue() { return -1; }
+  loadGrid(p) { return projectToGrid(p); }
+  lbl(d) { return 'DMC ' + d.code; }
+  worldSize() { return [this.g.w, this.g.h]; }
+  toolDefs() { return [['pencil', 'pencil', 'Crayon'], ['erase', 'eraser', 'Gomme'], ['fill', 'fill', 'Remplir'], ['pick', 'pick', 'Pipette'], ['bs', 'line', 'P. arrière'], ['bserase', 'bserase', 'Effacer P.A.'], ['pan', 'hand', 'Déplacer']]; }
   build() {
     const root = $('#app'); root.innerHTML = '';
-    const tools = [['pencil', 'pencil', 'Crayon'], ['erase', 'eraser', 'Gomme'], ['fill', 'fill', 'Remplir'], ['pick', 'pick', 'Pipette'], ['bs', 'line', 'P. arrière'], ['bserase', 'bserase', 'Effacer P.A.'], ['pan', 'hand', 'Déplacer']];
+    const tools = this.toolDefs();
     this.rail = h('div', { class: 'rail' });
     tools.forEach(([k, ic, l]) => this.rail.append(h('button', { class: 'tool' + (this.tool === k ? ' on' : ''), 'data-t': k, onclick: () => this.setTool(k) }, icon(ic), l)));
     this.rail.append(h('hr'));
@@ -1928,7 +2006,7 @@ class CroixEditor {
     this.side = h('div', { class: 'side' });
     root.append(h('div', { class: 'ed' }, top, this.rail, wrap, this.side));
     this.stage = new Stage(wrap, {
-      worldSize: () => [this.g.w, this.g.h], minScale: 0.5, maxScale: 120,
+      worldSize: () => this.worldSize(), minScale: 0.5, maxScale: 120,
       draw: (ctx, st) => this.draw(ctx, st), isPan: () => this.tool === 'pan', fingerNav: () => Prefs.fingerNav,
       toolStart: (pt) => this.tStart(pt), toolMove: (pt) => this.tMove(pt), toolEnd: (pt) => this.tEnd(pt), toolCancel: () => this.tCancel(),
     });
@@ -1976,7 +2054,7 @@ class CroixEditor {
   }
   draw(ctx, st) {
     const g = this.g, s = st.s, ox = st.ox, oy = st.oy;
-    ctx.fillStyle = '#e9e1d3'; ctx.fillRect(0, 0, st.W, st.H);
+    ctx.fillStyle = '#E5E5EA'; ctx.fillRect(0, 0, st.W, st.H);
     ctx.fillStyle = this.view === 'symbol' ? '#fff' : '#fbf8f1'; ctx.fillRect(ox, oy, g.w * s, g.h * s);
     const x0 = Math.max(0, Math.floor(-ox / s)), x1 = Math.min(g.w, Math.ceil((st.W - ox) / s)), y0 = Math.max(0, Math.floor(-oy / s)), y1 = Math.min(g.h, Math.ceil((st.H - oy) / s));
     ctx.imageSmoothingEnabled = false;
@@ -2008,7 +2086,7 @@ class CroixEditor {
       }
     }
     // repères centraux
-    ctx.fillStyle = '#b0283f';
+    ctx.fillStyle = '#FF3B30';
     const cxp = ox + g.w / 2 * s, cyp = oy + g.h / 2 * s;
     ctx.beginPath(); ctx.moveTo(cxp - 7, oy - 12); ctx.lineTo(cxp + 7, oy - 12); ctx.lineTo(cxp, oy - 2); ctx.fill();
     ctx.beginPath(); ctx.moveTo(ox - 12, cyp - 7); ctx.lineTo(ox - 12, cyp + 7); ctx.lineTo(ox - 2, cyp); ctx.fill();
@@ -2020,10 +2098,11 @@ class CroixEditor {
     ctx.strokeStyle = 'rgba(0,0,0,.5)'; ctx.lineWidth = 1; ctx.strokeRect(ox + .5, oy + .5, g.w * s, g.h * s);
   }
   /* --- outils --- */
-  snap() { this.undo.push({ cells: this.g.cells.slice(), bs: this.g.bs.map(b => ({ ...b })), palette: this.g.palette.slice() }); if (this.undo.length > 60) this.undo.shift(); this.redo = []; this.updUndo(); }
-  restore(s) { this.g.cells = s.cells; this.g.bs = s.bs; this.g.palette = s.palette; if (this.cur >= this.g.palette.length) this.cur = Math.max(0, this.g.palette.length - 1); this.changed(true); }
-  doUndo() { const s = this.undo.pop(); if (!s) return; this.redo.push({ cells: this.g.cells.slice(), bs: this.g.bs.map(b => ({ ...b })), palette: this.g.palette.slice() }); this.restore(s); this.updUndo(); }
-  doRedo() { const s = this.redo.pop(); if (!s) return; this.undo.push({ cells: this.g.cells.slice(), bs: this.g.bs.map(b => ({ ...b })), palette: this.g.palette.slice() }); this.restore(s); this.updUndo(); }
+  state() { return { cells: this.g.cells.slice(), bs: this.g.bs.map(b => ({ ...b })), palette: this.g.palette.slice(), marks: this.g.marks ? this.g.marks.slice() : null, w: this.g.w, h: this.g.h }; }
+  snap() { this.undo.push(this.state()); if (this.undo.length > 60) this.undo.shift(); this.redo = []; this.updUndo(); }
+  restore(s) { const resized = s.w !== this.g.w || s.h !== this.g.h; this.g.cells = s.cells; this.g.bs = s.bs; this.g.palette = s.palette; if (s.marks) this.g.marks = s.marks; this.g.w = s.w; this.g.h = s.h; if (resized) { this.colorImg = h('canvas', { width: s.w, height: s.h }); } if (this.cur >= this.g.palette.length) this.cur = Math.max(0, this.g.palette.length - 1); this.changed(true); }
+  doUndo() { const s = this.undo.pop(); if (!s) return; this.redo.push(this.state()); this.restore(s); this.updUndo(); }
+  doRedo() { const s = this.redo.pop(); if (!s) return; this.undo.push(this.state()); this.restore(s); this.updUndo(); }
   updUndo() { this.undoB.disabled = !this.undo.length; this.redoB.disabled = !this.redo.length; }
   changed(side) { this.updateImg(); this.stage.redraw(); this.save(); if (side) this.renderSide(); else this.sideLater(); }
   sideLater = debounce(() => this.renderSide(), 400);
@@ -2035,14 +2114,14 @@ class CroixEditor {
   paintLine(a, b, v) { let [x0, y0] = a; const [x1, y1] = b; const dx = Math.abs(x1 - x0), dy = -Math.abs(y1 - y0), sx = x0 < x1 ? 1 : -1, sy = y0 < y1 ? 1 : -1; let err = dx + dy; for (;;) { this.paintCell(x0, y0, v); if (x0 === x1 && y0 === y1) break; const e2 = 2 * err; if (e2 >= dy) { err += dy; x0 += sx; } if (e2 <= dx) { err += dx; y0 += sy; } } }
   tStart(p) {
     const g = this.g, c = this.cellAt(p);
-    if (this.tool === 'pencil' || this.tool === 'erase') { if (this.tool === 'pencil' && !g.palette[this.cur]) return; this.snap(); this.last = c; this.paintLine(c, c, this.tool === 'erase' ? -1 : this.cur); this.updateImg(); this.stage.redraw(); this.active = true; }
+    if (this.tool === 'pencil' || this.tool === 'erase') { if (this.tool === 'pencil' && !g.palette[this.cur]) return; this.snap(); this.last = c; this.paintLine(c, c, this.tool === 'erase' ? this.eraseValue : this.cur); this.updateImg(); this.stage.redraw(); this.active = true; }
     else if (this.tool === 'fill') { if (c[0] < 0 || c[1] < 0 || c[0] >= g.w || c[1] >= g.h) return; this.snap(); this.flood(c[0], c[1], this.cur); this.changed(); }
     else if (this.tool === 'pick') { const v = g.cells[c[1] * g.w + c[0]]; if (c[0] >= 0 && c[1] >= 0 && c[0] < g.w && c[1] < g.h && v >= 0) { this.cur = v; this.renderSide(); } this.setTool(this.prevTool === 'pick' ? 'pencil' : this.prevTool); }
     else if (this.tool === 'bs') { const n = [Math.round(p.x), Math.round(p.y)]; this.bsDraft = { c: this.cur, x1: n[0], y1: n[1], x2: n[0], y2: n[1] }; this.stage.redraw(); }
     else if (this.tool === 'bserase') { this.snap(); this.eraseBs(p); }
   }
   tMove(p) {
-    if (this.active) { const c = this.cellAt(p); if (c[0] !== this.last[0] || c[1] !== this.last[1]) { this.paintLine(this.last, c, this.tool === 'erase' ? -1 : this.cur); this.last = c; this.updateImg(); this.stage.redraw(); } }
+    if (this.active) { const c = this.cellAt(p); if (c[0] !== this.last[0] || c[1] !== this.last[1]) { this.paintLine(this.last, c, this.tool === 'erase' ? this.eraseValue : this.cur); this.last = c; this.updateImg(); this.stage.redraw(); } }
     else if (this.bsDraft) { const g = this.g; this.bsDraft.x2 = Math.max(0, Math.min(g.w, Math.round(p.x))); this.bsDraft.y2 = Math.max(0, Math.min(g.h, Math.round(p.y))); this.stage.redraw(); }
     else if (this.tool === 'bserase') this.eraseBs(p);
   }
@@ -2073,7 +2152,7 @@ class CroixEditor {
   async mergeThread(i) {
     const others = this.g.palette.map((d, j) => ({ d, j })).filter(o => o.j !== i);
     if (!others.length) return toast('Il n’y a pas d’autre fil.');
-    const pick = await new Promise(res => { const dlg = modal({ title: `Fusionner DMC ${this.g.palette[i].code} dans…`, onClose: v => res(v), body: h('div', { class: 'pal' }, others.map(o => h('div', { class: 'pi', onclick: () => { res(o.j); dlg.ov.remove(); } }, h('div', { class: 'sw', style: { background: o.d.hex } }), h('div', { class: 't' }, h('b', {}, 'DMC ' + o.d.code), h('span', {}, o.d.name))))) }); });
+    const pick = await new Promise(res => { const dlg = modal({ title: `Fusionner ${this.lbl(this.g.palette[i])} dans…`, onClose: v => res(v), body: h('div', { class: 'pal' }, others.map(o => h('div', { class: 'pi', onclick: () => { res(o.j); dlg.ov.remove(); } }, h('div', { class: 'sw', style: { background: o.d.hex } }), h('div', { class: 't' }, h('b', {}, this.lbl(o.d)), h('span', {}, o.d.yarn ? '' : o.d.name))))) }); });
     if (pick == null || pick === false) return;
     this.snap(); this.mergeInto(i, pick); this.changed(true);
   }
@@ -2095,8 +2174,9 @@ class CroixEditor {
     const nw = g.w + inputs.l + inputs.r, nh = g.h + inputs.t + inputs.b;
     if (nw < 2 || nh < 2 || nw > 600 || nh > 600) return toast('Taille impossible.');
     this.snap();
-    const nc = new Int16Array(nw * nh).fill(-1);
-    for (let y = 0; y < nh; y++) for (let x = 0; x < nw; x++) { const sx = x - inputs.l, sy = y - inputs.t; if (sx >= 0 && sy >= 0 && sx < g.w && sy < g.h) nc[y * nw + x] = g.cells[sy * g.w + sx]; }
+    const nc = new Int16Array(nw * nh).fill(this.eraseValue), nm = g.marks ? new Int16Array(nw * nh) : null;
+    for (let y = 0; y < nh; y++) for (let x = 0; x < nw; x++) { const sx = x - inputs.l, sy = y - inputs.t; if (sx >= 0 && sy >= 0 && sx < g.w && sy < g.h) { nc[y * nw + x] = g.cells[sy * g.w + sx]; if (nm) nm[y * nw + x] = g.marks[sy * g.w + sx]; } }
+    if (nm) g.marks = nm;
     g.bs = g.bs.map(b => ({ ...b, x1: b.x1 + inputs.l, x2: b.x2 + inputs.l, y1: b.y1 + inputs.t, y2: b.y2 + inputs.t })).filter(b => Math.min(b.x1, b.x2) >= 0 && Math.min(b.y1, b.y2) >= 0 && Math.max(b.x1, b.x2) <= nw && Math.max(b.y1, b.y2) <= nh);
     g.w = nw; g.h = nh; g.cells = nc; this.colorImg = h('canvas', { width: nw, height: nh }); this.changed(true); this.stage.fit();
   }
@@ -2252,6 +2332,395 @@ class CroixEditor {
       const bytes = await doc.build();
       b.close();
       deliver(safeName(this.p.name) + '.pdf', bytes, 'application/pdf', `${doc.pages.length} pages A4. Imprime à 100 % (taille réelle).`);
+    } catch (e) { b.close(); console.error(e); toast('Erreur PDF : ' + e.message, 5000); }
+  }
+}
+
+// Jacquard : pas de case vide, le fond devient une couleur
+function fillBackground(g) {
+  if (g.cells.some(v => v < 0)) fillEmpty(g);
+  // la laine la plus utilisée devient la couleur de fond (n° 0)
+  const cnt = new Array(g.palette.length).fill(0); for (const v of g.cells) cnt[v]++;
+  const order = g.palette.map((_, i) => i).sort((a, b) => cnt[b] - cnt[a]), inv = []; order.forEach((o, i) => inv[o] = i);
+  for (let k = 0; k < g.cells.length; k++) g.cells[k] = inv[g.cells[k]];
+  g.palette = order.map(o => g.palette[o]);
+  return g;
+}
+function fillEmpty(g) {
+  let bi = g.palette.findIndex(p => p.name === 'Fond');
+  if (bi < 0) { g.palette.push(mkYarn('Fond', '#efe6d2')); bi = g.palette.length - 1; }
+  for (let k = 0; k < g.cells.length; k++) if (g.cells[k] < 0) g.cells[k] = bi;
+  return g;
+}
+
+'use strict';
+/* =========================================================
+   JACQUARD (TRICOT)
+   ========================================================= */
+function jqToGrid(p) { return { w: p.w, h: p.h, cells: b64ToI16(p.cells), marks: p.marks ? b64ToI16(p.marks) : new Int16Array(p.w * p.h), palette: (p.yarns || []).map(y => mkYarn(y.name, y.hex)), bs: [] }; }
+function jqFromGrid(p, g) { p.w = g.w; p.h = g.h; p.cells = i16ToB64(g.cells); p.yarns = g.palette.map(d => ({ name: d.name, hex: d.hex })); p.marks = i16ToB64(g.marks || new Int16Array(g.w * g.h)); p.bs = []; return p; }
+function jqThumb(g, ar, max = 260) {
+  const k = Math.min(max / g.w, max / (g.h * ar), 6), ky = k * ar, c = h('canvas', { width: Math.max(1, Math.round(g.w * k)), height: Math.max(1, Math.round(g.h * ky)) }), ctx = c.getContext('2d');
+  for (let y = 0; y < g.h; y++) for (let x = 0; x < g.w; x++) { const v = g.cells[y * g.w + x]; if (v < 0) continue; ctx.fillStyle = g.palette[v].hex; ctx.fillRect(Math.floor(x * k), Math.floor(y * ky), Math.ceil(k), Math.ceil(ky)); }
+  return c;
+}
+async function newJacquardFromImage() {
+  const f = await pickFile(IMPORT_ACCEPT); if (!f) return;
+  const b = busy('Lecture du fichier…');
+  let c; try { c = await fileToCanvas(f); } catch (e) { b.close(); if (e.message !== 'cancel') toast(e.message, 4500); return; }
+  b.close();
+  const res = await prepDialog(c, null, 'jacquard'); if (!res) return;
+  const p = { id: uid(), type: 'jacquard', name: (f.name || 'Jacquard').replace(/\.[^.]+$/, '').slice(0, 40), created: Date.now(), updated: Date.now(), gauge: { sts: res.conv.sts, rows: res.conv.rows }, flat: true, maxFloat: 5, src: canvasToJpegURL(c), conv: res.conv };
+  jqFromGrid(p, res.grid); p.thumb = jqThumb(res.grid, res.conv.sts / res.conv.rows).toDataURL('image/png');
+  await Store.put(p); openJacquard(p);
+}
+async function newJacquardBlank() {
+  const wI = h('input', { type: 'number', value: 40, min: 4, max: 400 }), hI = h('input', { type: 'number', value: 30, min: 4, max: 600 });
+  const sI = h('input', { type: 'number', value: 22, min: 5, max: 60 }), rI = h('input', { type: 'number', value: 30, min: 5, max: 80 });
+  const ok = await new Promise(r => modal({ title: 'Nouvelle grille de jacquard', onClose: r, body: h('div', {}, h('div', { class: 'row' }, field('Largeur (mailles)', wI), field('Hauteur (rangs)', hI)), h('p', { class: 'note' }, 'Échantillon de ta laine (sur 10 cm) :'), h('div', { class: 'row' }, field('Mailles / 10 cm', sI), field('Rangs / 10 cm', rI))), actions: [{ label: 'Annuler', value: false }, { label: 'Créer', cls: 'pri', value: true }] }));
+  if (!ok) return;
+  const w = Math.min(400, Math.max(4, +wI.value || 40)), hh = Math.min(600, Math.max(4, +hI.value || 30));
+  const g = { w, h: hh, cells: new Int16Array(w * hh).fill(0), palette: [mkYarn('Écru', '#efe6d2'), mkYarn('Rouge', '#c3272b')], bs: [] };
+  const p = { id: uid(), type: 'jacquard', name: 'Jacquard ' + w + '×' + hh, created: Date.now(), updated: Date.now(), gauge: { sts: +sI.value || 22, rows: +rI.value || 30 }, flat: true, maxFloat: 5, src: null };
+  jqFromGrid(p, g); p.thumb = jqThumb(g, p.gauge.sts / p.gauge.rows).toDataURL('image/png');
+  await Store.put(p); openJacquard(p);
+}
+function openJacquard(p) { App.current && App.current.destroy && App.current.destroy(); App.current = new JacquardEditor(p); }
+function editYarn(y, title) {
+  return new Promise(res => {
+    let hex = y ? y.hex : '#c3272b';
+    const name = h('input', { type: 'text', value: y ? y.name : '', placeholder: 'Nom ou référence (ex. Drops Alpaca 3620)' });
+    const col = h('input', { type: 'color', value: hex, style: { width: '64px', height: '48px', border: 'none', background: 'none', padding: 0 }, oninput: e => { hex = e.target.value; prev.style.background = hex; } });
+    const prev = h('div', { style: { width: '48px', height: '48px', borderRadius: '10px', background: hex, border: '1px solid var(--line)' } });
+    const chips = h('div', { class: 'chips' }, YARN_NAMES.map(([n, x]) => h('button', { class: 'chip', title: n, style: { background: x }, onclick: () => { hex = x; col.value = x; prev.style.background = x; if (!name.value || YARN_NAMES.some(q => q[0] === name.value)) name.value = n; } })));
+    modal({ title, onClose: v => res(v ? mkYarn(name.value.trim() || yarnName(hex), hex) : null), body: h('div', {}, field('Nom de la laine', name), h('div', { class: 'row', style: { margin: '6px 0 14px' } }, prev, col, h('span', { class: 'note' }, 'Touche le carré de couleur pour choisir une teinte précise')), chips), actions: [{ label: 'Annuler', value: false }, { label: 'OK', cls: 'pri', value: true }] });
+  });
+}
+
+class JacquardEditor extends CroixEditor {
+  constructor(p) {
+    p.gauge = p.gauge || { sts: 22, rows: 30 }; p.maxFloat = p.maxFloat || 5; if (p.flat === undefined) p.flat = true; p.view = p.view || 'color';
+    super(p);
+  }
+  loadGrid(p) { return jqToGrid(p); }
+  get ay() { return this.p.gauge.sts / this.p.gauge.rows; }
+  get eraseValue() { return 0; }
+  lbl(d) { return d.name; }
+  worldSize() { return [this.g.w, this.g.h * this.ay]; }
+  toolDefs() { return [['pencil', 'pencil', 'Crayon'], ['erase', 'eraser', 'Fond'], ['fill', 'fill', 'Remplir'], ['pick', 'pick', 'Pipette'], ['augm', 'letterA', 'Augm.'], ['dimi', 'letterD', 'Dimin.'], ['pan', 'hand', 'Déplacer']]; }
+  tStart(p) {
+    if (this.tool === 'augm' || this.tool === 'dimi') {
+      const g = this.g, [x, y] = this.cellAt(p); if (x < 0 || y < 0 || x >= g.w || y >= g.h) return;
+      if (!g.marks) g.marks = new Int16Array(g.w * g.h);
+      const v = this.tool === 'augm' ? 1 : 2; this.snap(); this.markVal = g.marks[y * g.w + x] === v ? 0 : v;
+      g.marks[y * g.w + x] = this.markVal; this.marking = true; this.stage.redraw(); return;
+    }
+    super.tStart(p);
+  }
+  tMove(p) {
+    if (this.marking) { const g = this.g, [x, y] = this.cellAt(p); if (x >= 0 && y >= 0 && x < g.w && y < g.h && g.marks[y * g.w + x] !== this.markVal) { g.marks[y * g.w + x] = this.markVal; this.stage.redraw(); } return; }
+    super.tMove(p);
+  }
+  tEnd(p) { if (this.marking) { this.marking = false; this.changed(true); return; } super.tEnd(p); }
+  tCancel() { if (this.marking) { this.marking = false; const s = this.undo.pop(); if (s) this.restore(s); this.updUndo(); return; } super.tCancel(); }
+  cellAt(p) { return [Math.floor(p.x), Math.floor(p.y / this.ay)]; }
+  build() {
+    super.build();
+    const sel = $('.top select'); if (sel) { sel.innerHTML = ''; [['color', 'Couleurs'], ['both', 'Couleurs + symboles'], ['symbol', 'Symboles'], ['knit', 'Rendu tricoté']].forEach(([v, l]) => sel.append(h('option', { value: v, selected: v === this.view }, l))); }
+    if (this.hint) this.hint.textContent = 'Pencil : dessiner · 1 doigt : déplacer · 2 doigts : zoomer — le rang 1 est en bas';
+  }
+  // flottés trop longs et rangs à plus de 2 couleurs
+  analyze() {
+    const g = this.g, max = this.p.maxFloat, mark = new Uint8Array(g.w * g.h), rows3 = new Set(); let floats = 0;
+    for (let y = 0; y < g.h; y++) {
+      const used = new Set(); for (let x = 0; x < g.w; x++) used.add(g.cells[y * g.w + x]);
+      if (used.size > 2) rows3.add(y);
+      if (used.size < 2) continue;
+      for (const c of used) {
+        let last = -1;
+        for (let x = 0; x < g.w; x++) {
+          if (g.cells[y * g.w + x] !== c) continue;
+          const L = x - last - 1;
+          if (last >= 0 && L > max) { floats++; const n = Math.ceil((L - max) / (max + 1)); for (let j = 1; j <= n; j++) { let q = last + Math.round(j * (L + 1) / (n + 1)) + (y % 2 ? 1 : -1); q = Math.min(x - 2, Math.max(last + 2, q)); mark[y * g.w + q] = 1; } }
+          last = x;
+        }
+      }
+    }
+    let crosses = 0; for (const v of mark) crosses += v;
+    return { mark, rows3, floats, crosses };
+  }
+  renderSide() {
+    const s = this.side; s.innerHTML = '';
+    const g = this.g, counts = new Array(g.palette.length).fill(0);
+    for (const v of g.cells) if (v >= 0) counts[v]++;
+    const total = g.w * g.h || 1;
+    this.an = this.analyze();
+    const pal = h('div', { class: 'pal' });
+    g.palette.forEach((d, i) => {
+      const sw = h('div', { class: 'sw', style: { background: d.hex } }); const sc = h('canvas', { width: 68, height: 68 }); sw.append(sc);
+      if (this.view !== 'color') drawSymbolCanvas(sc.getContext('2d'), i, 10, 10, 48, lum(d.rgb) > 140 ? '#000' : '#fff');
+      pal.append(h('div', { class: 'pi' + (i === this.cur ? ' on' : ''), onclick: () => { this.cur = i; if (['erase', 'pick', 'pan'].includes(this.tool)) this.setTool('pencil'); this.renderSide(); } },
+        sw, h('div', { class: 't' }, h('b', {}, d.name), h('span', {}, i === 0 ? 'couleur de fond' : d.hex)), h('div', { class: 'n' }, Math.round(counts[i] / total * 100) + ' %')));
+    });
+    const G = this.p.gauge, an = this.an;
+    const sI = h('input', { type: 'number', value: G.sts, min: 5, max: 60, onchange: e => { G.sts = Math.max(5, +e.target.value || 22); this.afterGauge(); } });
+    const rI = h('input', { type: 'number', value: G.rows, min: 5, max: 80, onchange: e => { G.rows = Math.max(5, +e.target.value || 30); this.afterGauge(); } });
+    const fv = h('b', {}, this.p.maxFloat + ' m.'), fr = h('input', { type: 'range', min: 3, max: 9, step: 1, value: this.p.maxFloat });
+    fr.oninput = () => { this.p.maxFloat = +fr.value; fv.textContent = fr.value + ' m.'; this.sideLater(); this.stage.redraw(); this.save(); };
+    const nA = g.marks ? g.marks.reduce((a, v) => a + (v === 1), 0) : 0, nD = g.marks ? g.marks.reduce((a, v) => a + (v === 2), 0) : 0;
+    const warn = [];
+    if (an.rows3.size) warn.push(h('div', { class: 'alert' }, `${an.rows3.size} rang${an.rows3.size > 1 ? 's' : ''} avec plus de 2 couleurs (repérés en rouge à droite). En jacquard, 2 couleurs par rang sont plus faciles ; sinon, pense à l’intarsia ou à la broderie de mailles (point de Suisse).`));
+    if (an.floats) warn.push(h('div', { class: 'alert' }, `${an.floats} flotté${an.floats > 1 ? 's' : ''} de plus de ${this.p.maxFloat} mailles : ${an.crosses} croisement${an.crosses > 1 ? 's' : ''} de fils à faire, marqué${an.crosses > 1 ? 's' : ''} ✕ dans la grille (croise le fil qui flotte avec celui qui tricote à cette maille).`));
+    if (!warn.length) warn.push(h('div', { class: 'stat' }, '✓ Aucun flotté trop long, au plus 2 couleurs par rang.'));
+    s.append(
+      h('div', { class: 'box' }, h('h4', {}, `Laines (${g.palette.length})`), pal,
+        h('div', { class: 'row', style: { marginTop: '8px' } },
+          h('button', { class: 'btn sm', onclick: () => this.addThread() }, '+ Ajouter une laine'),
+          h('button', { class: 'btn sm', onclick: () => this.changeThread(this.cur) }, 'Modifier'),
+          g.palette.length > 1 ? h('button', { class: 'btn sm', onclick: () => this.mergeThread(this.cur) }, 'Fusionner') : null,
+          g.palette.length > 1 ? h('button', { class: 'btn sm danger', onclick: () => this.removeThread(this.cur) }, 'Retirer') : null)),
+      h('div', { class: 'box' }, h('h4', {}, 'Contrôle du jacquard'), ...warn,
+        h('label', { class: 'chk' }, h('input', { type: 'checkbox', checked: this.showFloats !== false, onchange: e => { this.showFloats = e.target.checked; this.stage.redraw(); } }), 'Afficher les croisements de fils (✕)'),
+        field('Flotté maximum', fr, fv)),
+      h('div', { class: 'box' }, h('h4', {}, 'Augmentations / diminutions'),
+        h('div', { class: 'stat' }, h('b', {}, nA), ' augmentation' + (nA > 1 ? 's' : '') + ' (A) · ', h('b', {}, nD), ' diminution' + (nD > 1 ? 's' : '') + ' (D)'),
+        h('p', { class: 'note', style: { margin: '4px 0 0' } }, 'Outils A et D à gauche : touche une case pour poser la lettre, touche-la de nouveau pour l’enlever.')),
+      h('div', { class: 'box' }, h('h4', {}, 'Tricot'),
+        h('div', { class: 'stat' }, h('b', {}, `${g.w} mailles × ${g.h} rangs`), h('br'), 'Taille : ', h('b', {}, `${(g.w / G.sts * 10).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} × ${(g.h / G.rows * 10).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} cm`)),
+        h('p', { class: 'note', style: { margin: '6px 0' } }, 'Échantillon sur 10 cm :'),
+        h('div', { class: 'row' }, field('Mailles', sI), field('Rangs', rI)),
+        h('div', { class: 'fld' }, h('span', { class: 'lab' }, 'Tricoté'), seg([{ v: true, l: 'À plat (allers-retours)' }, { v: false, l: 'En rond' }], this.p.flat, v => { this.p.flat = v; this.stage.redraw(); this.save(); }))),
+      h('div', { class: 'box' }, h('h4', {}, 'Motif'),
+        h('div', { class: 'row' },
+          h('button', { class: 'btn sm', onclick: () => this.repeatDlg() }, 'Répéter le motif'),
+          h('button', { class: 'btn sm', onclick: () => this.mirror(true) }, 'Miroir ↔'),
+          h('button', { class: 'btn sm', onclick: () => this.mirror(false) }, 'Miroir ↕'),
+          h('button', { class: 'btn sm', onclick: () => this.resizeGrid() }, 'Agrandir / rogner'),
+          this.p.src ? h('button', { class: 'btn sm', onclick: () => this.regenerate() }, 'Recalculer depuis l’image') : null),
+        h('label', { class: 'chk' }, h('input', { type: 'checkbox', checked: this.showGrid, onchange: e => { this.showGrid = e.target.checked; this.stage.redraw(); } }), 'Afficher le quadrillage'),
+        h('label', { class: 'chk' }, h('input', { type: 'checkbox', checked: Prefs.fingerNav, onchange: e => { Prefs.fingerNav = e.target.checked; } }), 'Avec le Pencil, les doigts servent seulement à naviguer')));
+  }
+  afterGauge() { this.stage.fit(); this.renderSide(); this.save(); }
+  draw(ctx, st) {
+    const g = this.g, sx = st.s, sy = st.s * this.ay, ox = st.ox, oy = st.oy, flat = this.p.flat;
+    ctx.fillStyle = '#E5E5EA'; ctx.fillRect(0, 0, st.W, st.H);
+    const x0 = Math.max(0, Math.floor(-ox / sx)), x1 = Math.min(g.w, Math.ceil((st.W - ox) / sx)), y0 = Math.max(0, Math.floor(-oy / sy)), y1 = Math.min(g.h, Math.ceil((st.H - oy) / sy));
+    ctx.imageSmoothingEnabled = false;
+    if (this.view === 'symbol') { ctx.fillStyle = '#fff'; ctx.fillRect(ox, oy, g.w * sx, g.h * sy); }
+    else if (this.view === 'knit' && sx >= 6) {
+      ctx.fillStyle = '#d9d2c6'; ctx.fillRect(ox, oy, g.w * sx, g.h * sy);
+      for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) {
+        const d = g.palette[g.cells[y * g.w + x]]; if (!d) continue; const X = ox + x * sx, Y = oy + y * sy;
+        ctx.fillStyle = d.hex;
+        for (const side of [0, 1]) { ctx.beginPath(); const a = X + sx * (side ? .5 : 0), b = X + sx * (side ? 1 : .5); if (side) { ctx.moveTo(X + sx * .5, Y + sy * .95); ctx.quadraticCurveTo(X + sx * .98, Y + sy * .1, X + sx * .98, Y - sy * .25); ctx.lineTo(X + sx * .62, Y - sy * .1); ctx.quadraticCurveTo(X + sx * .55, Y + sy * .4, X + sx * .5, Y + sy * .95); } else { ctx.moveTo(X + sx * .5, Y + sy * .95); ctx.quadraticCurveTo(X + sx * .02, Y + sy * .1, X + sx * .02, Y - sy * .25); ctx.lineTo(X + sx * .38, Y - sy * .1); ctx.quadraticCurveTo(X + sx * .45, Y + sy * .4, X + sx * .5, Y + sy * .95); } ctx.fill(); }
+        ctx.strokeStyle = 'rgba(0,0,0,.18)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(X + sx * .5, Y + sy * .9); ctx.lineTo(X + sx * .5, Y + sy * .2); ctx.stroke();
+      }
+    } else ctx.drawImage(this.colorImg, ox, oy, g.w * sx, g.h * sy);
+    const grid = this.showGrid && this.view !== 'knit';
+    if (grid && sx >= 4) {
+      ctx.beginPath(); ctx.strokeStyle = 'rgba(0,0,0,.16)'; ctx.lineWidth = 1;
+      for (let x = x0; x <= x1; x++) { const X = Math.round(ox + x * sx) + .5; ctx.moveTo(X, oy + y0 * sy); ctx.lineTo(X, oy + y1 * sy); }
+      for (let y = y0; y <= y1; y++) { const Y = Math.round(oy + y * sy) + .5; ctx.moveTo(ox + x0 * sx, Y); ctx.lineTo(ox + x1 * sx, Y); }
+      ctx.stroke();
+    }
+    if (grid && sx >= 1.5) { // lignes de 10, comptées depuis le coin bas-droit
+      ctx.beginPath(); ctx.strokeStyle = 'rgba(0,0,0,.45)'; ctx.lineWidth = sx >= 6 ? 1.5 : 1;
+      for (let x = 0; x <= g.w; x++) if ((g.w - x) % 10 === 0) { const X = Math.round(ox + x * sx) + .5; ctx.moveTo(X, oy); ctx.lineTo(X, oy + g.h * sy); }
+      for (let y = 0; y <= g.h; y++) if ((g.h - y) % 10 === 0) { const Y = Math.round(oy + y * sy) + .5; ctx.moveTo(ox, Y); ctx.lineTo(ox + g.w * sx, Y); }
+      ctx.stroke();
+    }
+    if ((this.view === 'symbol' || this.view === 'both') && sx >= 9 && sy >= 7) {
+      const z = Math.min(sx, sy) * .78;
+      for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) { const v = g.cells[y * g.w + x]; if (v < 0) continue; drawSymbolCanvas(ctx, v, ox + x * sx + (sx - z) / 2, oy + y * sy + (sy - z) / 2, z, this.view === 'symbol' ? '#222' : (lum(g.palette[v].rgb) > 140 ? 'rgba(0,0,0,.8)' : 'rgba(255,255,255,.9)')); }
+    }
+    if (!this.an) this.an = this.analyze(); const an = this.an;
+    const marks = g.marks, z = Math.min(sx, sy);
+    if (z >= 5) {
+      for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) {
+        const k = y * g.w + x, X = ox + x * sx, Y = oy + y * sy, light = lum(g.palette[g.cells[k]]?.rgb || [255, 255, 255]) > 140;
+        if (this.showFloats !== false && an.mark[k]) {
+          const m = z * .2; ctx.lineCap = 'round';
+          for (const [col, wdt] of [[light ? 'rgba(255,255,255,.9)' : 'rgba(0,0,0,.6)', z * .26], [light ? '#c8102e' : '#ffd400', z * .13]]) { ctx.strokeStyle = col; ctx.lineWidth = Math.max(1.5, wdt); ctx.beginPath(); ctx.moveTo(X + sx / 2 - z / 2 + m, Y + sy / 2 - z / 2 + m); ctx.lineTo(X + sx / 2 + z / 2 - m, Y + sy / 2 + z / 2 - m); ctx.moveTo(X + sx / 2 + z / 2 - m, Y + sy / 2 - z / 2 + m); ctx.lineTo(X + sx / 2 - z / 2 + m, Y + sy / 2 + z / 2 - m); ctx.stroke(); }
+        }
+        if (marks && marks[k]) {
+          const L = marks[k] === 1 ? 'A' : 'D';
+          ctx.font = `800 ${z * .8}px -apple-system, Helvetica, sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+          ctx.lineWidth = Math.max(2, z * .16); ctx.strokeStyle = light ? '#fff' : '#000'; ctx.strokeText(L, X + sx / 2, Y + sy / 2 + z * .04);
+          ctx.fillStyle = light ? '#111' : '#fff'; ctx.fillText(L, X + sx / 2, Y + sy / 2 + z * .04);
+        }
+      }
+    }
+    // numéros de rangs (rang 1 en bas) et de mailles (de droite à gauche)
+    const fs = Math.max(9, Math.min(13, sy * .7));
+    ctx.font = `600 ${fs}px -apple-system, Helvetica, sans-serif`; ctx.textBaseline = 'middle';
+    const every = sy >= 12 ? 1 : sy >= 5 ? 5 : 10;
+    for (let y = y0; y < y1; y++) {
+      const r = g.h - y; const Y = oy + (y + .5) * sy;
+      if (an.rows3.has(y)) { ctx.fillStyle = 'rgba(220,20,40,.85)'; ctx.fillRect(ox + g.w * sx + 2, oy + y * sy, 4, sy); }
+      if (r % every && r !== 1) continue;
+      ctx.fillStyle = '#5a4f47';
+      if (!flat || r % 2 === 1) { ctx.textAlign = 'left'; ctx.fillText(r, ox + g.w * sx + 9, Y); }
+      if (flat && r % 2 === 0) { ctx.textAlign = 'right'; ctx.fillText(r, ox - 6, Y); }
+    }
+    const ce = sx >= 14 ? 1 : sx >= 6 ? 5 : 10;
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top'; ctx.fillStyle = '#5a4f47';
+    for (let x = x0; x < x1; x++) { const n = g.w - x; if (n % ce && n !== 1) continue; ctx.fillText(n, ox + (x + .5) * sx, oy + g.h * sy + 5); }
+    ctx.strokeStyle = 'rgba(0,0,0,.5)'; ctx.lineWidth = 1; ctx.strokeRect(ox + .5, oy + .5, g.w * sx, g.h * sy);
+  }
+  changed(side) { this.an = null; super.changed(side); }
+  async addThread() { const y = await editYarn(null, 'Ajouter une laine'); if (!y) return; this.snap(); this.g.palette.push(y); this.cur = this.g.palette.length - 1; if (['erase', 'pick', 'pan'].includes(this.tool)) this.setTool('pencil'); this.changed(true); }
+  async changeThread(i) { const y = await editYarn(this.g.palette[i], 'Modifier la laine'); if (!y) return; this.snap(); this.g.palette[i] = y; this.changed(true); }
+  async removeThread(i) {
+    const g = this.g; if (g.palette.length < 2) return;
+    const to = i === 0 ? 1 : 0;
+    if (!(await confirmDlg('Retirer cette laine ?', `Les mailles « ${g.palette[i].name} » passeront en « ${g.palette[to].name} ».`, 'Retirer'))) return;
+    this.snap(); this.mergeInto(i, to); this.changed(true);
+  }
+  async regenerate() {
+    const src = await dataURLToCanvas(this.p.src);
+    const conv = Object.assign({}, this.p.conv || {}, { sts: this.p.gauge.sts, rows: this.p.gauge.rows });
+    const res = await prepDialog(src, conv, 'jacquard'); if (!res) return;
+    this.snap(); res.grid.marks = new Int16Array(res.grid.w * res.grid.h); this.g = res.grid; this.p.conv = res.conv; this.p.gauge = { sts: res.conv.sts, rows: res.conv.rows }; this.cur = 0;
+    this.colorImg = h('canvas', { width: this.g.w, height: this.g.h }); this.changed(true); this.stage.fit();
+  }
+  async repeatDlg() {
+    const g = this.g; let nx = 2, ny = 1;
+    const info = h('div', { class: 'stat' });
+    const upd = () => { info.innerHTML = `Résultat : <b>${g.w * nx} mailles × ${g.h * ny} rangs</b> (${(g.w * nx / this.p.gauge.sts * 10).toFixed(1)} × ${(g.h * ny / this.p.gauge.rows * 10).toFixed(1)} cm)`; };
+    const xI = h('input', { type: 'number', value: nx, min: 1, max: 40, oninput: e => { nx = Math.max(1, +e.target.value || 1); upd(); } }), yI = h('input', { type: 'number', value: ny, min: 1, max: 40, oninput: e => { ny = Math.max(1, +e.target.value || 1); upd(); } });
+    upd();
+    const ok = await new Promise(r => modal({ title: 'Répéter le motif', onClose: r, body: h('div', {}, h('p', { class: 'note' }, 'Le motif actuel est copié côte à côte (en largeur) et/ou empilé (en hauteur) : pratique pour une bande de jacquard autour d’un pull ou d’un bonnet.'), h('div', { class: 'row' }, field('Fois en largeur', xI), field('Fois en hauteur', yI)), info), actions: [{ label: 'Annuler', value: false }, { label: 'Répéter', cls: 'pri', value: true }] }));
+    if (!ok) return;
+    const nw = g.w * nx, nh = g.h * ny; if (nw > 800 || nh > 800) return toast('Trop grand (800 mailles ou rangs maximum).');
+    this.snap(); const nc = new Int16Array(nw * nh), nm = new Int16Array(nw * nh), om = g.marks || new Int16Array(g.w * g.h);
+    for (let y = 0; y < nh; y++) for (let x = 0; x < nw; x++) { const s0 = (y % g.h) * g.w + (x % g.w); nc[y * nw + x] = g.cells[s0]; nm[y * nw + x] = om[s0]; }
+    g.w = nw; g.h = nh; g.cells = nc; g.marks = nm; this.colorImg = h('canvas', { width: nw, height: nh }); this.changed(true); this.stage.fit();
+  }
+  mirror(horiz) {
+    const g = this.g; this.snap(); const nc = new Int16Array(g.cells.length), nm = new Int16Array(g.cells.length), om = g.marks || nm.slice();
+    for (let y = 0; y < g.h; y++) for (let x = 0; x < g.w; x++) { const s0 = horiz ? y * g.w + (g.w - 1 - x) : (g.h - 1 - y) * g.w + x; nc[y * g.w + x] = g.cells[s0]; nm[y * g.w + x] = om[s0]; }
+    g.cells = nc; g.marks = nm; this.changed(true);
+  }
+  persist() { const p = this.p; jqFromGrid(p, this.g); p.updated = Date.now(); p.thumb = jqThumb(this.g, this.ay).toDataURL('image/png'); Store.put(p); }
+  /* --- export --- */
+  exportDlg() {
+    const st = { cellMm: 4, colored: true, proportional: true, crosses: true };
+    const [r1, r1v] = (() => { const v = h('b', {}, st.cellMm + ' mm'), i = h('input', { type: 'range', min: 2.5, max: 8, step: 0.5, value: st.cellMm }); i.oninput = () => { st.cellMm = +i.value; v.textContent = st.cellMm + ' mm'; }; return [i, v]; })();
+    const body = h('div', {},
+      h('div', { class: 'card' }, h('h4', {}, 'Grille PDF à imprimer'),
+        h('p', { class: 'note', style: { marginTop: 0 } }, 'Page de garde (aperçu, laines, taille finie, sens de lecture) puis la grille sur pages A4 : rangs numérotés depuis le bas, mailles de droite à gauche, repères tous les 10.'),
+        field('Largeur d’une case', r1, r1v),
+        h('label', { class: 'chk' }, h('input', { type: 'checkbox', checked: st.proportional, onchange: e => st.proportional = e.target.checked }), 'Cases aux proportions de la maille (aperçu fidèle du tricot)'),
+        h('label', { class: 'chk' }, h('input', { type: 'checkbox', checked: st.colored, onchange: e => st.colored = e.target.checked }), 'Cases en couleur (sinon symboles noir et blanc)'),
+        h('label', { class: 'chk' }, h('input', { type: 'checkbox', checked: st.crosses, onchange: e => st.crosses = e.target.checked }), 'Indiquer les croisements de fils (✕)'),
+        h('button', { class: 'btn pri', onclick: () => this.makePDF(st) }, 'Créer le PDF')),
+      h('div', { class: 'card' }, h('h4', {}, 'Machine à tricoter'),
+        h('p', { class: 'note', style: { marginTop: 0 } }, 'Image où 1 pixel = 1 maille (rang 1 en bas), à charger dans AYAB pour les machines Brother électroniques ou à reporter sur une carte perforée. Garde 2 couleurs par rang pour le jacquard machine.'),
+        h('button', { class: 'btn sec', onclick: () => this.makeMachinePNG() }, 'Image 1 pixel = 1 maille (PNG)')),
+      h('div', { class: 'card' }, h('h4', {}, 'Autres'), h('div', { class: 'row' },
+        h('button', { class: 'btn sm', onclick: () => this.makePNG() }, 'Image PNG de la grille'),
+        h('button', { class: 'btn sm', onclick: () => { this.persist(); exportProjectFile(this.p); } }, 'Sauvegarde du projet (.json)'))));
+    modal({ title: 'Exporter', body });
+  }
+  async makeMachinePNG() {
+    const g = this.g, c = h('canvas', { width: g.w, height: g.h }); c.getContext('2d').drawImage(this.colorImg, 0, 0);
+    const blob = await new Promise(r => c.toBlob(r, 'image/png'));
+    deliver(safeName(this.p.name) + '_machine.png', new Uint8Array(await blob.arrayBuffer()), 'image/png', `${g.w} × ${g.h} pixels, ${g.palette.length} couleurs : ` + g.palette.map(d => d.name).join(', ') + '.');
+  }
+  async makePNG() {
+    const g = this.g, k = Math.max(6, Math.min(24, Math.floor(3000 / Math.max(g.w, g.h)))), ky = k * this.ay, c = h('canvas', { width: Math.round(g.w * k), height: Math.round(g.h * ky) }), ctx = c.getContext('2d');
+    ctx.imageSmoothingEnabled = false; ctx.drawImage(this.colorImg, 0, 0, c.width, c.height);
+    ctx.strokeStyle = 'rgba(0,0,0,.25)'; ctx.lineWidth = 1; ctx.beginPath(); for (let x = 0; x <= g.w; x++) { ctx.moveTo(x * k + .5, 0); ctx.lineTo(x * k + .5, c.height); } for (let y = 0; y <= g.h; y++) { ctx.moveTo(0, y * ky + .5); ctx.lineTo(c.width, y * ky + .5); } ctx.stroke();
+    const blob = await new Promise(r => c.toBlob(r, 'image/png'));
+    deliver(safeName(this.p.name) + '.png', new Uint8Array(await blob.arrayBuffer()), 'image/png');
+  }
+  async makePDF(st) {
+    const b = busy('Création du PDF…'); await nextFrame();
+    try {
+      const g = this.g, G = this.p.gauge, flat = this.p.flat, doc = new PdfDoc(this.p.name), W = 595.28, H = 841.89, M = 34, an = this.analyze();
+      const counts = new Array(g.palette.length).fill(0); for (const v of g.cells) if (v >= 0) counts[v]++;
+      let pg = doc.addPage(W, H);
+      pg.text(M, M + 22, this.p.name, 22, { bold: true, color: [42, 36, 32] });
+      pg.text(M, M + 40, `Grille de jacquard — ${g.w} mailles × ${g.h} rangs — ${g.palette.length} couleurs`, 11, { color: [110, 100, 92] });
+      const thumb = jqThumb(g, this.ay, 1100), img = await doc.addCanvasImage(thumb);
+      const k = Math.min((W - 2 * M) / thumb.width, 300 / thumb.height), iw = thumb.width * k, ih = thumb.height * k;
+      pg.image(img, (W - iw) / 2, M + 56, iw, ih); pg.stroke([200, 190, 175]).lw(.6).rect((W - iw) / 2, M + 56, iw, ih, 'S');
+      let y = M + 56 + ih + 26;
+      const lines = [
+        `Échantillon : ${G.sts} mailles × ${G.rows} rangs = 10 × 10 cm — taille finie environ ${(g.w / G.sts * 10).toFixed(1).replace('.', ',')} × ${(g.h / G.rows * 10).toFixed(1).replace('.', ',')} cm`,
+        flat ? 'Tricot à plat : lire la grille de bas en haut. Rangs impairs (endroit) de droite à gauche, rangs pairs (envers) de gauche à droite.' : 'Tricot en rond : lire chaque tour de droite à gauche, de bas en haut.',
+        `Contrôle : ${an.rows3.size ? an.rows3.size + ' rang(s) à plus de 2 couleurs' : 'au plus 2 couleurs par rang'} · ${an.floats ? an.floats + ' flotté(s) de plus de ' + this.p.maxFloat + ' mailles à coincer' : 'aucun flotté de plus de ' + this.p.maxFloat + ' mailles'}.`];
+      lines.forEach(t => { pg.text(M, y, t, 10, { color: [60, 54, 50] }); y += 15; });
+      y += 12;
+      pg.fill([243, 236, 224]).rect(M, y - 12, W - 2 * M, 17, 'f');
+      ['Symbole', 'Laine', 'Mailles', 'Part'].forEach((t, i) => pg.text([M + 6, M + 66, M + 380, M + 460][i], y, t, 9, { bold: true, color: [60, 54, 50] }));
+      y += 17;
+      g.palette.forEach((d, i) => {
+        if (y > H - M) { pg = doc.addPage(W, H); y = M + 20; }
+        pg.fill(d.rgb).rect(M + 10, y - 12, 14, 14, 'f'); pg.symbol(i, M + 11.5, y - 10.5, 11, lum(d.rgb) > 140 ? [0, 0, 0] : [255, 255, 255]); pg.stroke([150, 140, 130]).lw(.4).rect(M + 10, y - 12, 14, 14, 'S');
+        pg.text(M + 66, y, d.name + (i === 0 ? ' (fond)' : ''), 10, { bold: true, color: [42, 36, 32] });
+        pg.text(M + 420, y, fmt(counts[i]), 10, { align: 'right' }); pg.text(M + 490, y, Math.round(counts[i] / (g.w * g.h) * 100) + ' %', 10, { align: 'right' });
+        pg.stroke([230, 222, 210]).lw(.4).line(M, y + 5, W - M, y + 5); y += 17;
+      });
+      const nA = g.marks ? g.marks.reduce((a, v) => a + (v === 1), 0) : 0, nD = g.marks ? g.marks.reduce((a, v) => a + (v === 2), 0) : 0;
+      const extra = [];
+      if (nA) extra.push(['A', `Augmentation (${nA})`, 'tricoter 2 mailles dans cette maille (ou relever le brin)']);
+      if (nD) extra.push(['D', `Diminution (${nD})`, 'tricoter cette maille avec la suivante (2 m. ens.)']);
+      if (st.crosses && an.crosses) extra.push(['X', `Croisement de fils (${an.crosses})`, 'croiser le fil qui flotte avec celui qui tricote, pour coincer le flotté']);
+      if (extra.length) { y += 8; for (const [c, t, d] of extra) {
+        if (y > H - M) { pg = doc.addPage(W, H); y = M + 20; }
+        pg.stroke([150, 140, 130]).lw(.4).rect(M + 10, y - 12, 14, 14, 'S');
+        if (c === 'X') pg.cap(1).lw(1.6).stroke([200, 16, 46]).line(M + 13, y - 9, M + 21, y - 1).line(M + 21, y - 9, M + 13, y - 1);
+        else pg.text(M + 17, y - 1.5, c, 10.5, { bold: true, align: 'center', color: [0, 0, 0] });
+        pg.text(M + 66, y, t, 10, { bold: true, color: [42, 36, 32] }); pg.text(M + 230, y, d, 9, { color: [90, 82, 76] }); y += 17; } }
+      // pages de grille
+      const cw = st.cellMm * MM, ch = st.proportional ? cw * this.ay : cw, top = M + 26, left = M + 22, right = W - M - 22;
+      let cols = Math.floor((right - left) / cw), rows = Math.floor((H - top - M - 24) / ch);
+      if (cols > 10) cols -= cols % 10; if (rows > 10) rows -= rows % 10;
+      // découpage depuis le bas-droit pour que les repères tombent juste
+      const px = Math.ceil(g.w / cols), py = Math.ceil(g.h / rows), np = px * py;
+      let n = 0;
+      for (let j = 0; j < py; j++) for (let i = 0; i < px; i++) {
+        n++; b.set(`Création du PDF… page ${n}/${np}`); if (n % 3 === 0) await nextFrame();
+        pg = doc.addPage(W, H);
+        const cx1 = g.w - i * cols, cx0 = Math.max(0, cx1 - cols), cy1 = g.h - j * rows, cy0 = Math.max(0, cy1 - rows), cwN = cx1 - cx0, chN = cy1 - cy0;
+        const gx = left + (cols - cwN) * cw, gy = top;
+        pg.text(M, M + 10, `${this.p.name} — page ${n}/${np}`, 11, { bold: true, color: [42, 36, 32] });
+        pg.text(W - M, M + 10, `mailles ${g.w - cx1 + 1}–${g.w - cx0} · rangs ${g.h - cy1 + 1}–${g.h - cy0}`, 9, { align: 'right', color: [110, 100, 92] });
+        for (let yy = 0; yy < chN; yy++) for (let xx = 0; xx < cwN; xx++) {
+          const v = g.cells[(cy0 + yy) * g.w + cx0 + xx], d = g.palette[v], X = gx + xx * cw, Y = gy + yy * ch, z = Math.min(cw, ch) * .74;
+          if (st.colored) { pg.fill(d.rgb).rect(X, Y, cw, ch, 'f'); if (z >= 5 && g.palette.length > 1) pg.symbol(v, X + (cw - z) / 2, Y + (ch - z) / 2, z, lum(d.rgb) > 140 ? [0, 0, 0] : [255, 255, 255]); }
+          else if (v !== 0) pg.symbol(v, X + (cw - z) / 2, Y + (ch - z) / 2, z, [0, 0, 0]);
+          const kk = (cy0 + yy) * g.w + cx0 + xx, light = !st.colored || lum(d.rgb) > 140, zz = Math.min(cw, ch);
+          if (st.crosses && an.mark[kk]) {
+            const m = zz * .18, cx = X + cw / 2, cy = Y + ch / 2, r = zz / 2 - m;
+            pg.cap(1).lw(Math.max(.6, zz * .22)).stroke(light ? [255, 255, 255] : [0, 0, 0]).line(cx - r, cy - r, cx + r, cy + r).line(cx + r, cy - r, cx - r, cy + r);
+            pg.lw(Math.max(.4, zz * .11)).stroke(st.colored ? (light ? [200, 16, 46] : [255, 212, 0]) : [0, 0, 0]).line(cx - r, cy - r, cx + r, cy + r).line(cx + r, cy - r, cx - r, cy + r);
+          }
+          if (g.marks && g.marks[kk]) {
+            if (st.colored || v !== 0) pg.fill(light ? [255, 255, 255] : [0, 0, 0]).rect(X + cw * .12, Y + ch * .1, cw * .76, ch * .8, 'f');
+            pg.text(X + cw / 2, Y + ch / 2 + zz * .27, g.marks[kk] === 1 ? 'A' : 'D', zz * .75, { bold: true, align: 'center', color: light ? [0, 0, 0] : [255, 255, 255] });
+          }
+        }
+        pg.stroke([170, 160, 150]).lw(.25);
+        for (let xx = 0; xx <= cwN; xx++) pg.line(gx + xx * cw, gy, gx + xx * cw, gy + chN * ch);
+        for (let yy = 0; yy <= chN; yy++) pg.line(gx, gy + yy * ch, gx + cwN * cw, gy + yy * ch);
+        pg.stroke([40, 36, 32]).lw(.9);
+        for (let xx = 0; xx <= cwN; xx++) if ((g.w - cx0 - xx) % 10 === 0 || xx === 0 || xx === cwN) pg.line(gx + xx * cw, gy, gx + xx * cw, gy + chN * ch);
+        for (let yy = 0; yy <= chN; yy++) if ((g.h - cy0 - yy) % 10 === 0 || yy === 0 || yy === chN) pg.line(gx, gy + yy * ch, gx + cwN * cw, gy + yy * ch);
+        const fsz = Math.min(7, ch * .8);
+        for (let yy = 0; yy < chN; yy++) {
+          const r = g.h - (cy0 + yy), Y = gy + (yy + .5) * ch + fsz * .35;
+          if (ch < 5 && r % 5 && r !== 1) continue;
+          if (an.rows3.has(cy0 + yy)) pg.fill([220, 20, 40]).rect(gx + cwN * cw + 1, gy + yy * ch, 2, ch, 'f');
+          if (!flat || r % 2) pg.text(gx + cwN * cw + 5, Y, String(r), fsz, { color: [70, 62, 56] });
+          if (flat && r % 2 === 0) pg.text(gx - 3, Y, String(r), fsz, { align: 'right', color: [70, 62, 56] });
+        }
+        for (let xx = 0; xx < cwN; xx++) { const m = g.w - (cx0 + xx); if (m % 5 && m !== 1 && cw < 14) continue; pg.text(gx + (xx + .5) * cw, gy + chN * ch + 9, String(m), Math.min(7, cw * .75), { align: 'center', color: [70, 62, 56] }); }
+        pg.text(W - M, H - 18, flat ? 'Rangs impairs (endroit) : de droite à gauche. Rangs pairs (envers) : de gauche à droite.' : 'Chaque tour se lit de droite à gauche.', 7.5, { align: 'right', color: [110, 100, 92] });
+      }
+      const bytes = await doc.build(); b.close();
+      deliver(safeName(this.p.name) + '.pdf', bytes, 'application/pdf', `${doc.pages.length} pages A4.`);
     } catch (e) { b.close(); console.error(e); toast('Erreur PDF : ' + e.message, 5000); }
   }
 }
@@ -2414,7 +2883,7 @@ class MainEditor {
   }
   draw(ctx, st) {
     const k = st.s, T = p => [st.ox + p[0] * k, st.oy + p[1] * k], hp = this.hoop;
-    ctx.fillStyle = '#e9e1d3'; ctx.fillRect(0, 0, st.W, st.H);
+    ctx.fillStyle = '#E5E5EA'; ctx.fillRect(0, 0, st.W, st.H);
     // tissu
     ctx.save();
     ctx.shadowColor = 'rgba(0,0,0,.18)'; ctx.shadowBlur = 16;
@@ -2423,9 +2892,9 @@ class MainEditor {
     ctx.fill(); ctx.restore();
     // trame légère
     if (k > 3) { ctx.strokeStyle = 'rgba(120,100,80,.07)'; ctx.lineWidth = 1; ctx.beginPath(); for (let x = 0; x <= hp.w; x += 5) { ctx.moveTo(st.ox + x * k, st.oy); ctx.lineTo(st.ox + x * k, st.oy + hp.h * k); } for (let y = 0; y <= hp.h; y += 5) { ctx.moveTo(st.ox, st.oy + y * k); ctx.lineTo(st.ox + hp.w * k, st.oy + y * k); } ctx.stroke(); }
-    ctx.strokeStyle = 'rgba(176,40,63,.35)'; ctx.setLineDash([6, 6]); ctx.beginPath(); ctx.moveTo(st.ox + hp.w / 2 * k, st.oy); ctx.lineTo(st.ox + hp.w / 2 * k, st.oy + hp.h * k); ctx.moveTo(st.ox, st.oy + hp.h / 2 * k); ctx.lineTo(st.ox + hp.w * k, st.oy + hp.h / 2 * k); ctx.stroke(); ctx.setLineDash([]);
+    ctx.strokeStyle = 'rgba(10,132,255,.35)'; ctx.setLineDash([6, 6]); ctx.beginPath(); ctx.moveTo(st.ox + hp.w / 2 * k, st.oy); ctx.lineTo(st.ox + hp.w / 2 * k, st.oy + hp.h * k); ctx.moveTo(st.ox, st.oy + hp.h / 2 * k); ctx.lineTo(st.ox + hp.w * k, st.oy + hp.h / 2 * k); ctx.stroke(); ctx.setLineDash([]);
     const bg = this.p.bg;
-    if (bg && bg.show && this.bgImg) { ctx.globalAlpha = bg.op; ctx.imageSmoothingEnabled = true; ctx.drawImage(this.bgImg, st.ox + bg.x * k, st.oy + bg.y * k, bg.w * k, bg.w * bg.ar * k); ctx.globalAlpha = 1; if (this.tool === 'movebg') { ctx.strokeStyle = '#b0283f'; ctx.lineWidth = 2; ctx.strokeRect(st.ox + bg.x * k, st.oy + bg.y * k, bg.w * k, bg.w * bg.ar * k); } }
+    if (bg && bg.show && this.bgImg) { ctx.globalAlpha = bg.op; ctx.imageSmoothingEnabled = true; ctx.drawImage(this.bgImg, st.ox + bg.x * k, st.oy + bg.y * k, bg.w * k, bg.w * bg.ar * k); ctx.globalAlpha = 1; if (this.tool === 'movebg') { ctx.strokeStyle = '#0A84FF'; ctx.lineWidth = 2; ctx.strokeRect(st.ox + bg.x * k, st.oy + bg.y * k, bg.w * k, bg.w * bg.ar * k); } }
     if (this.preview) {
       const pat = handToPattern(this.p.strokes, this.mo); let last = null;
       for (const b of pat.blocks) {
